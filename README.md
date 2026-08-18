@@ -16,14 +16,14 @@ This toolkit is a practical companion to the article **Operational Truth in the 
 
 ## Downloads
 
-These links download the files directly rather than opening GitHub's binary preview layer.
+The links below bypass GitHub's document-preview page and request the stored file directly.
 
 | Need | Download |
 | --- | --- |
-| Print / workshop | [PDF](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/print/Operational_Authority_Toolkit_CC0.pdf) |
-| Edit the full pack | [DOCX](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/editable/Operational_Authority_Toolkit_CC0.docx) |
-| Work directly in a matrix | [XLSX](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/workbook/Record_of_Truth_Interface_Authority_Matrix_CC0.xlsx) |
-| Take everything | [ZIP](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/bundle/Operational_Authority_Toolkit_CC0.zip) |
+| Print / workshop | [Download PDF](https://github.com/Apathyte/operational-authority-toolkit/raw/refs/heads/main/print/Operational_Authority_Toolkit_CC0.pdf) |
+| Edit the full pack | [Download DOCX](https://github.com/Apathyte/operational-authority-toolkit/raw/refs/heads/main/editable/Operational_Authority_Toolkit_CC0.docx) |
+| Work directly in a matrix | [Download XLSX](https://github.com/Apathyte/operational-authority-toolkit/raw/refs/heads/main/workbook/Record_of_Truth_Interface_Authority_Matrix_CC0.xlsx) |
+| Take everything | [Download ZIP](https://github.com/Apathyte/operational-authority-toolkit/raw/refs/heads/main/bundle/Operational_Authority_Toolkit_CC0.zip) |
 
 ## Use it like a working tool
 
