@@ -14,14 +14,16 @@ This toolkit is a practical companion to the article **Operational Truth in the 
 - **End-to-End Operational Model Canvas** - step beyond the worksheet toward the actual target: a coherent operational model.
 - **Pre-Automation Authority Check** - a short gate before more operational action is delegated.
 
-## Formats
+## Downloads
 
-| Need | File |
+These links download the files directly rather than opening GitHub's binary preview layer.
+
+| Need | Download |
 | --- | --- |
-| Print / workshop | [`print/Operational_Authority_Toolkit_CC0.pdf`](print/Operational_Authority_Toolkit_CC0.pdf) |
-| Edit the full pack | [`editable/Operational_Authority_Toolkit_CC0.docx`](editable/Operational_Authority_Toolkit_CC0.docx) |
-| Work directly in a matrix | [`workbook/Record_of_Truth_Interface_Authority_Matrix_CC0.xlsx`](workbook/Record_of_Truth_Interface_Authority_Matrix_CC0.xlsx) |
-| Take everything | [`bundle/Operational_Authority_Toolkit_CC0.zip`](bundle/Operational_Authority_Toolkit_CC0.zip) |
+| Print / workshop | [PDF](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/print/Operational_Authority_Toolkit_CC0.pdf) |
+| Edit the full pack | [DOCX](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/editable/Operational_Authority_Toolkit_CC0.docx) |
+| Work directly in a matrix | [XLSX](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/workbook/Record_of_Truth_Interface_Authority_Matrix_CC0.xlsx) |
+| Take everything | [ZIP](https://raw.githubusercontent.com/Apathyte/operational-authority-toolkit/main/bundle/Operational_Authority_Toolkit_CC0.zip) |
 
 ## Use it like a working tool
 
