@@ -1,8 +1,36 @@
 # Operational Authority Toolkit
 
-Open, unbranded field templates for making operational meaning, authority, evidence, and exceptions explicit before detailed automation.
+**When ERP, MES, automation, procedures, and people disagree, who is allowed to be right?**
 
-This toolkit is a practical companion to the article **Operational Truth in the Age of AI**. It is not an industry standard, an ATS methodology, or a certification scheme.
+The Operational Authority Toolkit is a free, unbranded set of field templates for making **meaning, authority, evidence, and exceptions explicit before detailed automation**.
+
+Use it when a process works in practice, but the operational truth is scattered across systems, interfaces, procedures, tribal knowledge, and sensible human workarounds.
+
+**Free. No signup. No attribution required. Released under CC0 1.0 Universal.**
+
+> This toolkit is a practical companion to the article **Operational Truth in the Age of AI**. It is not an industry standard, an ATS methodology, a certification scheme, or a substitute for your own engineering, safety, quality, legal, or validation controls.
+
+## Start here
+
+If you only have 15 minutes, use the **Authority Questions - Quick Scan**.
+
+If you are designing or fixing an interface, use the **Interface Authority Decision Record** and **Record-of-Truth / Interface Authority Matrix**.
+
+If the real problem is bigger than one interface, use the **End-to-End Operational Model Canvas**.
+
+## What problem does this solve?
+
+Many architectures document **where data moves** without making equally explicit:
+
+- what a value means in operational context;
+- which actor or system may define, command, validate, override, or evidence it;
+- what happens when two sources disagree;
+- which exceptions are permitted;
+- what remains true after a manual intervention, workaround, or partial failure.
+
+That ambiguity is survivable while experienced people keep the process coherent. Automation and AI make it easier to scale the ambiguity too.
+
+The toolkit gives teams a small set of practical artefacts for exposing those decisions before they disappear into code, interfaces, workflow logic, or memory.
 
 ## What is in the pack
 
@@ -33,6 +61,16 @@ The objective is not to complete a framework. The objective is to leave enough o
 
 The matrix is therefore not the end product. The end goal is a coherent end-to-end operational model in which the relevant actors, objects, states, relationships, meanings, authorities, actions, evidence, and exceptions are explicit enough to be understood consistently.
 
+## Example situations
+
+This toolkit is useful when:
+
+- ERP says one lot was planned, MES says another state was executed, and the shop floor made a sensible substitution;
+- an interface moves a field successfully, but nobody can state which system owns its meaning;
+- a manual override is allowed operationally but poorly represented in the digital model;
+- an automation project is about to encode assumptions that have never been approved explicitly;
+- an AI or agent is being given operational action without a clear authority boundary.
+
 ## Preview
 
 ### Authority quick scan
@@ -46,6 +84,14 @@ The matrix is therefore not the end product. The end goal is a coherent end-to-e
 ### End-to-End Operational Model Canvas
 
 ![E2E Operational Model Canvas](previews/e2e-operational-model-canvas.png)
+
+## Trust, safety, and integrity
+
+This repository contains **documents and templates, not executable application code**. Treat editable files as working documents and review them before using them in controlled environments.
+
+Published artifacts have SHA-256 hashes in [`SHA256SUMS.txt`](SHA256SUMS.txt). The download links above are pinned to the immutable artifact commit so the files behind a shared link do not silently change.
+
+For security reporting and repository-specific trust notes, see [`SECURITY.md`](SECURITY.md).
 
 ## License
 
