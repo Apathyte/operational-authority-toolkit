@@ -1,0 +1,84 @@
+{
+  "case_id": "CASE-B-FICTIONAL",
+  "objective": "Digitise two changeover checks and a quality-hold process",
+  "boundary": "one work cell; local app, no PLC change",
+  "evidence_ids": [
+    "B-E1",
+    "B-E2",
+    "B-E3",
+    "B-E4"
+  ],
+  "claims": [
+    {
+      "id": "B-C1",
+      "status": "FACT",
+      "statement": "Design note documents a versioned three-event contract, not deployed service reliability.",
+      "evidence_ids": [
+        "B-E1"
+      ]
+    },
+    {
+      "id": "B-C2",
+      "status": "FACT",
+      "statement": "Workshop minutes identify two operator check screens and one hold/release flow.",
+      "evidence_ids": [
+        "B-E2"
+      ]
+    },
+    {
+      "id": "B-C3",
+      "status": "FACT",
+      "statement": "Operations note reports paper checklists and supervisor signatures.",
+      "evidence_ids": [
+        "B-E3"
+      ]
+    },
+    {
+      "id": "B-C4",
+      "status": "FACT",
+      "statement": "Ownership note assigns local interface maintainers, but no after-hours support owner.",
+      "evidence_ids": [
+        "B-E4"
+      ]
+    },
+    {
+      "id": "B-C5",
+      "status": "UNKNOWN",
+      "statement": "Formal approval authority for quality release is not established from source documents.",
+      "evidence_ids": []
+    }
+  ],
+  "as_is_flow": [
+    "Operator completes paper changeover checks [B-E3]",
+    "Supervisor signs quality holds [B-E3]",
+    "Planned digital event contract is documented [B-E1], but deployment availability unknown"
+  ],
+  "authority_gaps": [
+    {
+      "object": "quality release",
+      "question": "Which named role may release a hold, and how is that authenticated?",
+      "evidence_ids": [
+        "B-E3",
+        "B-E4"
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "B-U1",
+      "question": "What is approved hold/release authority and audit retention?",
+      "impact": "cannot automate release or lock acceptance",
+      "owner_or_role": "quality",
+      "gate": "G1"
+    },
+    {
+      "id": "B-U2",
+      "question": "Who accepts deployment and after-hours support responsibility?",
+      "impact": "go-live and TCO",
+      "owner_or_role": "site IT/operations",
+      "gate": "G2"
+    }
+  ],
+  "design_gate": "OPEN",
+  "commercial_recommendation": null
+}
