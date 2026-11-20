@@ -1,6 +1,6 @@
 ---
 name: ot-discovery
-description: Investigate operational reality for factories and service operations: reconstruct objects, state transitions, exceptions, human/system authority, contradictory evidence and interface semantics; produce a falsifiable, source-linked discovery contract before solution design. Use for MES/OT/IT discovery, workflow digitisation and integration investigations, including cases where the requested product may not be the real problem.
+description: "Investigate operational reality for factories and service operations: reconstruct objects, state transitions, exceptions, human/system authority, contradictory evidence and interface semantics; produce a falsifiable, source-linked discovery contract before solution design. Use for MES/OT/IT discovery, workflow digitisation and integration investigations, including cases where the requested product may not be the real problem."
 license: CC0-1.0
 metadata:
   version: "0.2.0"
