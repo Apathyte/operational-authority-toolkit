@@ -1,0 +1,100 @@
+{
+  "case_id": "CASE-A-FICTIONAL",
+  "objective": "Trace lot consumption and machine state on one batching area",
+  "boundary": "one area/two controllers; no network modification",
+  "evidence_ids": [
+    "A-E1",
+    "A-E2",
+    "A-E3",
+    "A-E4"
+  ],
+  "claims": [
+    {
+      "id": "A-C1",
+      "status": "FACT",
+      "statement": "An operator interview reports manual lot entry and daily reconciliation.",
+      "evidence_ids": [
+        "A-E1"
+      ]
+    },
+    {
+      "id": "A-C2",
+      "status": "FACT",
+      "statement": "A supplied inventory lists two controllers and no audited tag list.",
+      "evidence_ids": [
+        "A-E2"
+      ]
+    },
+    {
+      "id": "A-C3",
+      "status": "FACT",
+      "statement": "Process note describes daily order CSV and manual record keeping.",
+      "evidence_ids": [
+        "A-E3"
+      ]
+    },
+    {
+      "id": "A-C4",
+      "status": "FACT",
+      "statement": "Shift statement reports verbal post-cleaning release.",
+      "evidence_ids": [
+        "A-E4"
+      ]
+    },
+    {
+      "id": "A-C5",
+      "status": "UNKNOWN",
+      "statement": "Whether machine state can be retrieved reliably with accurate timing is not established.",
+      "evidence_ids": []
+    },
+    {
+      "id": "A-C6",
+      "status": "INFERENCE",
+      "statement": "Lot genealogy may have reconciliation delay and transcription risk.",
+      "evidence_ids": [
+        "A-E1",
+        "A-E3"
+      ]
+    }
+  ],
+  "as_is_flow": [
+    "Daily plan CSV reportedly received [A-E3]",
+    "Operator reportedly records consumed lots on paper [A-E1]",
+    "Supervisor reportedly reconciles daily [A-E1]",
+    "Cleaning release reportedly communicated verbally [A-E4]"
+  ],
+  "authority_gaps": [
+    {
+      "object": "ingredient lot consumed",
+      "question": "Who is authorised to correct a paper lot entry after reconciliation?",
+      "evidence_ids": [
+        "A-E1"
+      ]
+    },
+    {
+      "object": "cleaning release",
+      "question": "Who authorises a return to production and where is that evidenced?",
+      "evidence_ids": [
+        "A-E4"
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "A-U1",
+      "question": "What tags, protocols and timestamps actually exist on each controller?",
+      "impact": "machine-state interface feasibility and effort",
+      "owner_or_role": "site automation owner",
+      "gate": "G1"
+    },
+    {
+      "id": "A-U2",
+      "question": "What is the accepted lot reconciliation/override rule?",
+      "impact": "traceability design and acceptance",
+      "owner_or_role": "operations/quality authority",
+      "gate": "G1"
+    }
+  ],
+  "design_gate": "OPEN",
+  "commercial_recommendation": null
+}

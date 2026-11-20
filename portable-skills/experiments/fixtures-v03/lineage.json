@@ -1,0 +1,19 @@
+{
+ "case_id":"SYN-ROM-005","synthetic":true,"unit":"engineering days",
+ "description":"Fictional inspection workflow estimates with dissimilar supplier delivery lines; not customer rates.",
+ "revisions":[
+  {"id":"R1","date":"2026-01-01","boundary":"pilot and one event adapter","items":[
+   {"id":"R1-1","canonical":"APP-WORKFLOW","acceptance":"AC-WORKFLOW","supplier":"Integrator","low":12,"high":18},
+   {"id":"R1-2","canonical":"APP-UAT","acceptance":"AC-APP-UAT","supplier":"Integrator","low":4,"high":6},
+   {"id":"R1-3","canonical":"SOURCE-ADAPTER","acceptance":"AC-SOURCE","supplier":"Integrator","low":5,"high":9}
+  ]},
+  {"id":"R2","date":"2026-02-01","boundary":"pilot, supplier contribution and event contract","items":[
+   {"id":"R2-1","canonical":"APP-WORKFLOW","acceptance":"AC-WORKFLOW","supplier":"Integrator","low":10,"high":16},
+   {"id":"R2-2","canonical":"APP-UAT","acceptance":"AC-APP-UAT","supplier":"Integrator","low":5,"high":7},
+   {"id":"R2-3","canonical":"SOURCE-ADAPTER","acceptance":"AC-SOURCE","supplier":"Integrator","low":5,"high":10},
+   {"id":"R2-4","canonical":"APP-UAT","acceptance":"AC-APP-UAT","supplier":"Product supplier","low":3,"high":4},
+   {"id":"R2-5","canonical":"EVENT-CONTRACT","acceptance":"AC-EVENT","supplier":"Product supplier","low":4,"high":7}
+  ]}
+ ],
+ "required_conclusion":"Gross R1 and R2 are computable, but comparison is NOT COMPARABLE due to added scope and R2 NET UNRESOLVED due to supplier collision at AC-APP-UAT; no inferred saving."
+}

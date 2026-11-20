@@ -1,0 +1,42 @@
+{
+  "case_id": "CASE-B-FICTIONAL",
+  "setting": "fictional carton packaging work cell",
+  "objective": "Digitise two changeover checks and one quality-hold workflow for a single work cell",
+  "boundary": "one work cell; operator UI and local audit trail only",
+  "evidence": [
+    {
+      "id": "B-E1",
+      "origin": "fictional approved design note",
+      "statement": "A local event service exposes three versioned events: order-start, check-confirm, and hold-set with defined timestamps and identifiers.",
+      "limitation": "design note does not prove deployed uptime"
+    },
+    {
+      "id": "B-E2",
+      "origin": "fictional scoped workshop minutes",
+      "statement": "Scope is two operator check screens and one supervisor hold/release workflow.",
+      "limitation": "stakeholder sign-off is not provided"
+    },
+    {
+      "id": "B-E3",
+      "origin": "fictional operations note",
+      "statement": "Operators use paper changeover checklists and supervisors sign quality holds.",
+      "limitation": "document-reported, not site observed"
+    },
+    {
+      "id": "B-E4",
+      "origin": "fictional interface ownership note",
+      "statement": "Local event interface and identity directory have assigned maintainers; deployment and after-hours support owner is not assigned.",
+      "limitation": "ownership must be contractually confirmed"
+    }
+  ],
+  "constraints": [
+    "No new PLC access in MVP",
+    "Use existing event contract only",
+    "No automatic quality release"
+  ],
+  "out_of_scope": [
+    "machine safety logic",
+    "enterprise deployment",
+    "24/7 support"
+  ]
+}

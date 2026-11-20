@@ -1,0 +1,41 @@
+{
+  "case_id": "CASE-A-FICTIONAL",
+  "setting": "fictional granule batching cell",
+  "objective": "Trace lot consumption and machine state for two machines in one area",
+  "boundary": "single local batching area, no enterprise rollout",
+  "evidence": [
+    {
+      "id": "A-E1",
+      "origin": "fictional operator interview",
+      "statement": "Operators handwrite ingredient lot consumption during production; supervisor reconciles daily.",
+      "limitation": "interview only, not directly observed"
+    },
+    {
+      "id": "A-E2",
+      "origin": "fictional system inventory",
+      "statement": "Two controllers are present; no current tag list, OPC UA capability audit or documented timestamp semantics.",
+      "limitation": "inventory not independently checked"
+    },
+    {
+      "id": "A-E3",
+      "origin": "fictional process note",
+      "statement": "Order plan arrives as a daily CSV file; record keeping after shift is manual.",
+      "limitation": "note is undated"
+    },
+    {
+      "id": "A-E4",
+      "origin": "fictional shift statement",
+      "statement": "Machines can be isolated for cleaning; release after cleaning is verbally confirmed.",
+      "limitation": "second-hand testimony"
+    }
+  ],
+  "constraints": [
+    "No production network changes without site approval",
+    "No site access in this experiment"
+  ],
+  "out_of_scope": [
+    "plant safety design",
+    "ERP replacement",
+    "24/7 production support"
+  ]
+}

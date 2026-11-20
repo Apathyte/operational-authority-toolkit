@@ -1,0 +1,68 @@
+{
+  "case_id": "SYN-B-02",
+  "synthetic": true,
+  "scenario": "Fictional ingredients plant: lot substitution and quality hold",
+  "request": "Select a new execution platform and guarantee automatic lot genealogy and release at once.",
+  "boundary": "one mixing line, one ERP order feed, paper deviations and lab result exchange",
+  "sources": [
+    {
+      "id": "B-E1",
+      "kind": "INTERVIEW",
+      "assertion": "Planner says orders are changed after issue on busy days.",
+      "limitations": "Reported, no order revision samples."
+    },
+    {
+      "id": "B-E2",
+      "kind": "DOCUMENT",
+      "assertion": "ERP design states order ID is stable but line assignment and quantity can be revised.",
+      "limitations": "Documentation not confirmed in plant."
+    },
+    {
+      "id": "B-E3",
+      "kind": "INTERVIEW",
+      "assertion": "Operator says substitute lots are written on paper if the issued lot is unavailable.",
+      "limitations": "Two interviewees, no witnessed substitution."
+    },
+    {
+      "id": "B-E4",
+      "kind": "DOCUMENT",
+      "assertion": "Quality SOP says substitution needs approval and hold disposition requires QA signature.",
+      "limitations": "Policy text; local practice unverified."
+    },
+    {
+      "id": "B-E5",
+      "kind": "SYSTEM_EXTRACT",
+      "assertion": "Redacted execution CSV has one order with two different consumed lot values; no correction lineage.",
+      "limitations": "Cannot infer which represents physical consumption."
+    },
+    {
+      "id": "B-E6",
+      "kind": "INTERVIEW",
+      "assertion": "IT says lab results arrive with batch ID, sometimes after stock posting.",
+      "limitations": "No timestamps/logs provided."
+    },
+    {
+      "id": "B-E7",
+      "kind": "DOCUMENT",
+      "assertion": "Vendor deck asserts full standard genealogy and automatic QA release.",
+      "limitations": "Marketing assertion; no test or version provided."
+    },
+    {
+      "id": "B-E8",
+      "kind": "DOCUMENT",
+      "assertion": "Production management requires no interruption to existing order issue in pilot.",
+      "limitations": "Stated objective; authority to decide not demonstrated."
+    }
+  ],
+  "target_outcomes": [
+    "auditable consumed lot evidence",
+    "clear handling of late order changes",
+    "no unapproved quality release"
+  ],
+  "prohibited_by_fixture": [
+    "Treat vendor deck as demonstrated fit",
+    "Assume last CSV row is actual consumption",
+    "Automatic QA release without signed policy"
+  ],
+  "declared_synthetic_estimate_basis": {}
+}

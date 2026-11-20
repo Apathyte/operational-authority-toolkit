@@ -1,0 +1,24 @@
+name: Portable Skills validation
+on:
+  pull_request:
+    paths:
+      - 'portable-skills/**'
+      - '.github/workflows/portable-skills-validate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'portable-skills/**'
+      - '.github/workflows/portable-skills-validate.yml'
+permissions:
+  contents: read
+jobs:
+  offline-synthetic-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Run portable contracts and synthetic regressions
+        run: |
+          python3 portable-skills/tests/validate.py
+          python3 portable-skills/tests/temporal_replay.py
+          python3 portable-skills/tests/rom_lineage.py

@@ -10,6 +10,12 @@ Use it when a process works in practice, but the operational truth is scattered 
 
 > This toolkit is a practical companion to the article **Operational Truth in the Age of AI**. It is not an industry standard, an ATS methodology, a certification scheme, or a substitute for your own engineering, safety, quality, legal, or validation controls.
 
+## Experimental portable Agent Skills — v0.3 (draft)
+
+An optional, fully separate [portable skills package](portable-skills/README.md) provides two vendor-neutral `SKILL.md` capabilities: [OT Discovery](portable-skills/skills/ot-discovery/SKILL.md) and [Solution Architecture & ROM](portable-skills/skills/solution-architecture-rom/SKILL.md). v0.3 adds shared-resource/time modelling, contested approval-policy tests, and ROM revision/supplier overlap reconciliation. Its [change history](portable-skills/CHANGELOG.md), [offline synthetic checks](portable-skills/experiments/RESULTS-v03.md), and [peer-trial plan](portable-skills/experiments/PEER-TRIAL.md) remain **experimental**. No independent model-competence or field-safety validation is implied. The skills are not an official consultancy method or a replacement for this toolkit.
+
+The legacy PDF/DOCX/XLSX/ZIP links below remain pinned to their existing immutable artifacts; `SHA256SUMS.txt` applies to those distributed artifacts, **not** the current working-tree skills. The draft skills package includes only original CC0 material and fictional examples, plus Python standard-library offline validation scripts; it is not an OT runtime.
+
 ## Start here
 
 If you only have 15 minutes, use the **Authority Questions - Quick Scan**.
@@ -87,7 +93,7 @@ This toolkit is useful when:
 
 ## Trust, safety, and integrity
 
-This repository contains **documents and templates, not executable application code**. Treat editable files as working documents and review them before using them in controlled environments.
+The original toolkit downloads contain **documents and templates**. The optional experimental `portable-skills/tests/` directory contains **executable Python offline validators** for synthetic fixtures, not production automation. Review the scripts before running them; they require no credentials or OT connections. Treat all editable materials as working documents and review them before use in controlled environments.
 
 Published artifacts have SHA-256 hashes in [`SHA256SUMS.txt`](SHA256SUMS.txt). The download links above are pinned to the immutable artifact commit so the files behind a shared link do not silently change.
 

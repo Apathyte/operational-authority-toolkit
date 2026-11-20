@@ -1,0 +1,91 @@
+{
+  "case_id": "CASE-A-FICTIONAL",
+  "source_claim_ids": [
+    "A-C1",
+    "A-C2",
+    "A-C3",
+    "A-C4",
+    "A-C5",
+    "A-C6"
+  ],
+  "target_capability": "Traceable consumption and reliable equipment state",
+  "alternatives": [
+    {
+      "name": "minimal procedural digitisation",
+      "tradeoff": "can improve lot records without machine-state integration; state automation remains unresolved"
+    },
+    {
+      "name": "event-backed operation recording",
+      "tradeoff": "richer state traceability but blocked by unknown PLC semantics and authority"
+    }
+  ],
+  "mvp": {
+    "outcome": "trial traceable manual lot entry with controlled correction before machine-state integration",
+    "boundary": "one area; manually entered lots",
+    "acceptance_evidence": "reconciled lot record and auditable correction sample",
+    "exclusions": [
+      "PLC state acquisition pending G1",
+      "ERP replacement",
+      "safety interlocks",
+      "24/7 support"
+    ]
+  },
+  "fit_gap": [
+    {
+      "requirement": "lot capture",
+      "source_claim_id": "A-C1",
+      "status": "CONDITIONAL",
+      "note": "workflow candidate, owner approval required"
+    },
+    {
+      "requirement": "automated machine state",
+      "source_claim_id": "A-C5",
+      "status": "UNKNOWN",
+      "note": "no audited tag semantics"
+    }
+  ],
+  "ownership": [
+    {
+      "boundary": "controller access/tag meaning",
+      "owner": "UNASSIGNED pending site automation owner confirmation"
+    },
+    {
+      "boundary": "lot correction authority",
+      "owner": "UNASSIGNED pending operations/quality decision"
+    },
+    {
+      "boundary": "application workflow",
+      "owner": "PROPOSED implementer, not approved"
+    }
+  ],
+  "estimate_status": "ROM BLOCKED",
+  "estimate_basis": "No controlled machine-state scope or authority-approved lot process; quantitative integration effort would be fabricated.",
+  "workstreams": [
+    {
+      "name": "paid discovery",
+      "effort": "to be agreed following site access approval"
+    },
+    {
+      "name": "connectivity",
+      "effort": "separate quote after tag audit"
+    },
+    {
+      "name": "workflow implementation",
+      "effort": "not estimated until authority and acceptance are agreed"
+    }
+  ],
+  "external_dependencies": [
+    "A-U1",
+    "A-U2"
+  ],
+  "risks": [
+    "Wrong machine timestamps may corrupt genealogy",
+    "Unapproved correction authority may invalidate traceability"
+  ],
+  "decision_gates": [
+    "G1: site-approved tag and semantic survey",
+    "G1: quality/operations sign-off on lot correction rule",
+    "G2: choose manual-only or event-backed MVP"
+  ],
+  "commercial_status": "NON-BINDING / NOT FOR CONTRACTING"
+}

@@ -1,0 +1,202 @@
+{
+  "case_id": "SYN-B-02",
+  "objective": "Restore truthful consumption and release decisions before buying execution software",
+  "upstream_claim_ids": [
+    "B-C1",
+    "B-C2",
+    "B-C3",
+    "B-C4",
+    "B-C5",
+    "B-C6",
+    "B-C7",
+    "B-C8",
+    "B-C9",
+    "B-C10"
+  ],
+  "capabilities": [
+    {
+      "id": "B-CAP1",
+      "name": "lot provenance",
+      "acceptance_metric": "corrected consumed-lot record links original, actor, reason and effective time",
+      "evidence": "B-C5"
+    },
+    {
+      "id": "B-CAP2",
+      "name": "policy-compliant quality disposition",
+      "acceptance_metric": "late lab result never silently releases active hold",
+      "evidence": "B-C4"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "B-ALT0",
+      "pattern": "paper correction discipline + ERP governance",
+      "benefit": "fastest falsification of whether master-data/process is the blocker",
+      "limitation": "manual lineage and audit cost",
+      "proof_status": "PROPOSED",
+      "counterargument": "human rework can remain expensive"
+    },
+    {
+      "id": "B-ALT1",
+      "pattern": "controlled audit/reconciliation layer",
+      "benefit": "preserves existing order issue; tests corrections before platform choice",
+      "limitation": "cannot certify automated genealogy without physical semantics",
+      "proof_status": "CONDITIONAL",
+      "counterargument": "may become another system to maintain"
+    },
+    {
+      "id": "B-ALT2",
+      "pattern": "new execution platform",
+      "benefit": "potential integrated workflow and genealogy",
+      "limitation": "vendor fit unverified and local authority incomplete",
+      "proof_status": "UNKNOWN",
+      "counterargument": "new product might encode bad master-data and contested authority"
+    }
+  ],
+  "mvp": {
+    "actors": [
+      "operator",
+      "QA",
+      "planner"
+    ],
+    "transitions": [
+      "paper discrepancy logged",
+      "correction proposed",
+      "quality review",
+      "audit signed"
+    ],
+    "exceptions": [
+      "late order revision",
+      "material substitution",
+      "duplicate record",
+      "late lab result"
+    ],
+    "acceptance_tests": [
+      "replay duplicate lot event retains one physical claim",
+      "late lab event cannot clear hold",
+      "audit shows before/after correction and QA decision"
+    ],
+    "excluded": [
+      "automatic release",
+      "new platform commissioning",
+      "live ERP write",
+      "24/7 support"
+    ],
+    "deferred": [
+      "vendor selection after counterexample acceptance"
+    ]
+  },
+  "fit_gap": [
+    {
+      "capability_id": "B-CAP1",
+      "option_id": "B-ALT2",
+      "status": "UNKNOWN",
+      "evidence_claim_ids": [
+        "B-C5",
+        "B-C7",
+        "B-C8"
+      ],
+      "test": "vendor demonstrates corrected physical lot scenario in supported version"
+    },
+    {
+      "capability_id": "B-CAP2",
+      "option_id": "B-ALT2",
+      "status": "UNKNOWN",
+      "evidence_claim_ids": [
+        "B-C4",
+        "B-C7"
+      ],
+      "test": "negative test: late lab result with active hold must not auto-release"
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "B-WP-DISCOVERY",
+      "scope": "Evidence reconciliation and exception demonstration",
+      "delivery_owner": "operations+QA+analyst",
+      "estimate_status": "BLOCKED",
+      "depends_on": [],
+      "unblock_test": "supply actual anonymised revision/lot/quality trail or commission an authorised sample",
+      "effort_drivers": "Unmeasured/interface and validation scope"
+    },
+    {
+      "id": "B-WP-PRODUCT",
+      "scope": "Platform implementation + configuration",
+      "delivery_owner": "UNASSIGNED",
+      "estimate_status": "BLOCKED",
+      "depends_on": [
+        "B-U3"
+      ],
+      "unblock_test": "product-version witnessed fit, scope and ownership approval",
+      "effort_drivers": "Unmeasured/interface and validation scope"
+    },
+    {
+      "id": "B-WP-INTEGRATION",
+      "scope": "Automated genealogy",
+      "delivery_owner": "UNASSIGNED",
+      "estimate_status": "BLOCKED",
+      "depends_on": [
+        "B-U1",
+        "B-U2"
+      ],
+      "unblock_test": "lot identity and result/disposition semantics",
+      "effort_drivers": "Unmeasured/interface and validation scope"
+    },
+    {
+      "id": "B-WP-RELEASE",
+      "scope": "Automated quality release",
+      "delivery_owner": "UNASSIGNED",
+      "estimate_status": "BLOCKED",
+      "depends_on": [
+        "B-U2"
+      ],
+      "unblock_test": "formal QA release delegation (if ever allowed)",
+      "effort_drivers": "Unmeasured/interface and validation scope"
+    }
+  ],
+  "dependency_graph": [
+    {
+      "from": "B-WP-INTEGRATION",
+      "to": "B-WP-PRODUCT",
+      "kind": "requires-semantics-before-design"
+    },
+    {
+      "from": "B-WP-RELEASE",
+      "to": "B-WP-PRODUCT",
+      "kind": "requires-QA-authority"
+    }
+  ],
+  "numeric_estimated_scope_only": null,
+  "rollout": {
+    "first_site": "UNESTIMATED",
+    "site_classes": [],
+    "next_site": "UNESTIMATED"
+  },
+  "lifecycle": {
+    "hosting": "UNESTIMATED",
+    "support": "UNESTIMATED",
+    "upgrade": "UNESTIMATED"
+  },
+  "risks_and_counterevidence": [
+    "Vendor slide is a claim not fit proof",
+    "Physical lot truth cannot be selected by latest CSV row",
+    "Correcting data governance might eliminate need for new platform",
+    "Business case and quantified effort are not evidenced"
+  ],
+  "decision_gates": [
+    {
+      "id": "B-G1",
+      "status": "OPEN",
+      "owner": "operations + QA",
+      "evidence_to_unblock": "one traced corrective lot example"
+    },
+    {
+      "id": "B-G2",
+      "status": "BLOCKED",
+      "owner": "customer solution authority",
+      "evidence_to_unblock": "vendor exception demonstration plus contract semantics"
+    }
+  ],
+  "approval": "NOT GRANTED",
+  "commercial_status": "NON-BINDING / NOT FOR CONTRACTING"
+}

@@ -1,0 +1,15 @@
+{
+ "case_id":"SYN-TIM-004", "synthetic":true,
+ "description":"Three fictional packaging cells require one shared offline QA sampler, not a cleaning crew. Clock origin 09:00 local, no machine command or real site data.",
+ "unit":"minute", "clock_origin":"09:00", "resource_id":"QA-MOBILE-1", "sequence":[
+  {"id":"CELL-A","ready":0,"duration":16,"travel_from_previous":0},
+  {"id":"CELL-B","ready":18,"duration":16,"travel_from_previous":2},
+  {"id":"CELL-C","ready":35,"duration":16,"travel_from_previous":2}
+ ],
+ "scenarios":[
+  {"id":"BASE","ready_delta":{},"duration_delta":{}},
+  {"id":"B-LATE","ready_delta":{"CELL-B":10},"duration_delta":{}},
+  {"id":"C-NORM","ready_delta":{},"duration_delta":{"CELL-C":8}}
+ ],
+ "never_infer":["QA authorisation from sampler arrival","measured plant throughput from fictional clock","quality hold removal from scheduling"]
+}
