@@ -13,7 +13,7 @@ The pinned published toolkit artefacts are:
 
 ## Experimental Agent Skills (v0.3 draft)
 
-The two `SKILL.md` files are **advisory instructions for compatible AI hosts**, not permission to access data, control equipment, execute commands, approve quality, or commit a company financially. A host can have its own tools and privileges; installers must enforce their organisational limits separately. Supporting `tests/*.py` scripts use Python standard library only, read local synthetic fixtures, and can run in a scoped GitHub Actions workflow. The workflow uses GitHub-hosted execution and pinned action major versions, so its supply-chain profile is distinct from the downloadable toolkit documents. No SHA-256 claim is made for the mutable draft skill tree; use a commit hash for reproducibility. Do not upload confidential customer files or credentials as fixtures.
+The two `SKILL.md` files are **advisory instructions for compatible AI hosts**, not permission to access data, control equipment, execute commands, approve quality, or commit a company financially. A host can have its own tools and privileges; installers must enforce their organisational limits separately. Supporting `tests/*.py` scripts use Python standard library only, read local synthetic fixtures, and can run in a scoped GitHub Actions workflow. The workflow uses GitHub-hosted execution and version-tagged third-party actions (major-version tags, not immutable commit digests), so its supply-chain profile is distinct from the downloadable toolkit documents. No SHA-256 claim is made for the mutable draft skill tree; use a commit hash for reproducibility. Do not upload confidential customer files or credentials as fixtures.
 
 ## Safe use
 
