@@ -1,6 +1,6 @@
 ---
 name: solution-architecture-rom
-description: Challenge industrial software requests against operational outcomes; compare credible solution patterns, allocate authority and integration responsibilities, design a narrow verifiable MVP, assess scope-specific estimate readiness, and construct auditable conditional ROM and rollout/TCO scenarios without inventing technical or commercial certainty.
+description: "Challenge industrial software requests against operational outcomes; compare credible solution patterns, allocate authority and integration responsibilities, design a narrow verifiable MVP, assess scope-specific estimate readiness, and construct auditable conditional ROM and rollout/TCO scenarios without inventing technical or commercial certainty."
 license: CC0-1.0
 metadata:
   version: "0.2.0"
