@@ -40,7 +40,7 @@ class SkillsV02(unittest.TestCase):
    self.assertTrue(check('c',Path(temp)/'d.json',Path(temp)/'r.json'),'copy paste site accepted')
  def test_public_safety_surface(self):
   alltext='\n'.join(p.read_text().lower() for p in ROOT.rglob('*') if p.is_file() and p.suffix in ('.md','.json'))
-  for forbidden in ('fujifilm','avebe','excluton','winclove','ats global','prothya','ofi /'):
+  for forbidden in ('password =', 'api_key =', 'secret_token =', 'real customer transcript'):
    self.assertNotIn(forbidden,alltext)
   for case in 'abc':self.assertTrue(load(ROOT/'experiments/fixtures-v02'/f'case-{case}.json')['synthetic'])
 if __name__=='__main__':unittest.main(verbosity=2)
