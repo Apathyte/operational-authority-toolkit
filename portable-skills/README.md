@@ -1,32 +1,63 @@
-# Portable Industrial Skills — v0.1 experimental release
+# Portable Industrial Skills — v0.2 experimental
 
-Two **vendor-neutral Agent Skills** for evidence-led industrial discovery and bounded solution design. Public-domain dedication: **CC0-1.0**. Unaffiliated with any employer, vendor, standards body or customer. All example factories are fictional.
+**We give away the reasoning method, not merely the paperwork.** Two open, vendor-neutral Agent Skills for evidence-led operational discovery and industrial software/automation solution qualification. Public-domain dedication: [CC0-1.0](LICENSE.md). No corporate endorsement, no proprietary customer material, no real factory data, no vendor guarantees.
 
-**Pilot status:** These skills are working hypotheses, not validated consultancy methods. The supplied experiment demonstrates two synthetic cases and static contract tests. No claim of cross-model reliability or field validation is made.
+This repository folder is the **public experimental branch** of a wider skill idea. The package is portable at the `SKILL.md` format level; model results are **not automatically interchangeable** across hosts. Two independently installable skill folders deliberately carry their own reference documents.
 
-## Skills
+## What changed from v0.1
 
-1. [`ot-discovery`](skills/ot-discovery/SKILL.md) — build a traceable operational evidence register, state/authority map and discovery gate; **never** estimate or prescribe software.
-2. [`solution-architecture-rom`](skills/solution-architecture-rom/SKILL.md) — consume an evidence-led discovery artifact, form bounded alternatives, dependencies, exclusions and conditional ROM; **never** invent evidence or provide binding estimates.
+| Dimension | v0.1 | v0.2 |
+| --- | --- | --- |
+| Discovery | list facts/unknowns | source reliability, counter-hypotheses, object lifecycle, guarded transitions, failure/retry paths, six-verbs authority, interface semantics and falsification |
+| ROM | options and broad estimate status | no-build comparison, ability to challenge platform premise, site/partner responsibility graph, scope-specific readiness, detailed synthetic units, first vs nth site economics, incomplete TCO |
+| Unknowns | could block whole ROM | **selectively block affected decisions**, preserve independently testable/manual work |
+| Evaluations | two small illustrative examples, structural checks | three larger synthetic scenarios, richer model-authored outputs, case-specific offline oracle and negative mutations |
+| Confidence | no independent runs | still **no independent model runs or field validation**; candid peer protocol provided |
 
-**Contract:** Inputs may be incomplete and untrusted; facts require source IDs, assumptions remain assumptions, unknowns propagate, approval is never implicit. For sensitive settings, apply the adopting organisation's privacy, safety, engineering and contracting controls before invoking any tool or model.
+## Install
 
-## Install into a compatible agent
+Copy **either entire skill folder** into the directory supported by your assistant:
 
-Copy either entire skill directory (including `SKILL.md` and `references/`) into a project or user skill directory supported by your agent. Examples: `.agents/skills/` (generic), `.github/skills/` (Copilot), or `.claude/skills/` (Claude tooling). Discoverability and invocation differ between hosts; the format does not guarantee identical model outputs.
+- `skills/ot-discovery/` — source, authority, state/exception and semantics investigation.
+- `skills/solution-architecture-rom/` — outcome-led alternatives, selective ROM, responsibility and rollout/TCO.
 
-For handoff between agents, keep the discovery artifact and its evidence identifiers unchanged. Do not silently upgrade an assumption into a fact in the second pass. Each skill works independently; the paired workflow is optional.
+Many Agent Skills-compatible environments look for a `SKILL.md` and lazily load `references/`. Common directories include `.agents/skills/`, `.github/skills/`, `.claude/skills/`; exact compatibility and discovery rules depend on the host. **No runtime, API key, plugin or access to our GitHub account is necessary.** The skills do not depend on each other, though passing stable discovery claim IDs into ROM enables evidence tracing.
 
-## Test / experiment
+## Use it — independent workflow
 
-`python3 tests/validate.py` (stdlib only, no model or network required).
+Give the first skill *your own authorised notes* or a fictional scenario. Ask:
 
-Read [`experiments/RESULTS.md`](experiments/RESULTS.md) for two independent synthetic cases and the boundary violations checked. Fixture outputs are **authored examples** created through a single assistant-led reasoning pass, not automated multi-model benchmark scores. The validation script checks their *structural and traceability contracts*, not their real-world correctness.
+> Use the OT Discovery skill. Reconstruct the operational objects and transitions, identify where evidence or authority conflicts, propose tests that could falsify your conclusions and state exactly which downstream decisions remain blocked versus unaffected. Do not design or estimate yet.
 
-## Contribute
+Give the resulting evidence-led report to the second:
 
-Fork, modify, test on **synthetic or authorised data**, and submit a PR with an anonymised fixture, expected outcome, failed case and proposed change. Keep tests portable and avoid production credentials, customer drawings, proprietary pricing, or personal data. Maintain the evidence/authority boundary when translating to other industries.
+> Use Solution Architecture & ROM. Challenge the requested product, compare the simplest credible alternatives, define a minimum coherent pilot with negative acceptance tests, allocate owners and uncertainty per work package, and estimate only work packages with an explicit legitimate basis. Show what remains outside every subtotal and distinguish first site from future rollout.
 
-## Licensing / responsibility
+For an independent benchmark, use a fresh model run with the `experiments/fixtures-v02/` inputs and **do not show** it `outputs-v02/` or the case-specific grader first.
 
-CC0-1.0 public domain dedication applies to the original skill content and synthetic fixtures in this package. No warranties; not engineering, legal, safety, procurement or contractual approval. See `LICENSE.md` and the upstream CC0 legal code.
+## Real methodology, not templates alone
+
+The investigation distinguishes `cleaning complete`, `equipment stopped`, `quality authorised` and `safe/allowed to restart`. Those can be separate objects and transitions with distinct authorities. It distinguishes a reliable interface from one with **correct meaning**. The ROM process separates product, machine connectivity, integration, workflow, deployment, validation and managed service; an unknown interface can block *that* work package without necessarily blocking a manual trial. First-site reference build economics differ from parameterised site reuse, adapter work and genuine process redesign.
+
+Read each skill's `SKILL.md` then its linked reference playbooks to inspect the actual reasoning procedures. The reference documents provide investigation questions, falsification methods, state/authority modelling, decision matrices, estimation formulae, ownership semantics and adversarial reviews.
+
+## Reproducible offline checks
+
+Python 3.9+ standard library only, no network, no model calls:
+
+```bash
+python tests/validate.py
+python tests/grade.py --case a --discovery experiments/outputs-v02/case-a.discovery.json --rom experiments/outputs-v02/case-a.rom.json
+```
+
+The tests check contract traceability, state/authority references, source IDs, conditional-vs-blocked estimates, subtotal coverage, exceptions and scenario-specific failures, plus deliberate mutation/rejection. **They do not measure independent agent competence, hallucination rate, solution quality in a real plant or ROI.** `experiments/RESULTS-v02.md` and `experiments/PEER-TRIAL.md` spell out the evidence gap and how to close it.
+
+## How to improve it responsibly
+
+Open an issue or PR with a *synthetic or permitted* counterexample showing where an agent got a claim, ownership or architectural decision wrong. Provide the input, expected invariant, observed bad output, and a minimal reproduction that does **not** include confidential material. Challenge not just the phrasing but the reasoning. Do not upload identifiable interviews, proprietary estimates, production addresses, controller credentials, internal system diagrams or customer-specific procedures. Real industrial deployments require local technical, cyber/safety, operational, quality and commercial approval.
+
+The v0.1 baseline is retained in `experiments/v01-baseline/` for honest comparison, not as the current reference output contract. Names are provisional and versions are experimental; adoption is not certification.
+
+## Licence
+
+Original skill contents, synthetic fixtures and test scripts in this package are dedicated under [CC0-1.0](LICENSE.md). Third-party standards or proprietary implementations are not reproduced. No warranties, no safety certification and no automatic authorisation to connect to operational systems or commit a company financially.

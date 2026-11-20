@@ -1,0 +1,208 @@
+{
+  "case_id": "SYN-A-02",
+  "objective": "Improve cleaning evidence without confusing machine idle with release authority",
+  "upstream_claim_ids": [
+    "A-C1",
+    "A-C2",
+    "A-C3",
+    "A-C4",
+    "A-C5",
+    "A-C6",
+    "A-C7",
+    "A-C8",
+    "A-C9",
+    "A-C10",
+    "A-C11",
+    "A-C12"
+  ],
+  "capabilities": [
+    {
+      "id": "A-CAP1",
+      "name": "cleaning evidence",
+      "acceptance_metric": "four steps linked to cell, cycle and operator; retrospective correction retains prior value",
+      "evidence": "A-C1"
+    },
+    {
+      "id": "A-CAP2",
+      "name": "authorised release",
+      "acceptance_metric": "active hold cannot be auto-cleared by idle tag",
+      "evidence": "A-C6"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "A-ALT0",
+      "pattern": "procedure and existing forms only",
+      "benefit": "no new platform, lowest interface exposure",
+      "limitation": "late/retrospective completion still difficult to audit",
+      "proof_status": "PROPOSED",
+      "counterargument": "paper review may not prevent missed steps"
+    },
+    {
+      "id": "A-ALT1",
+      "pattern": "local manual-app workflow",
+      "benefit": "audited steps and missed-start escalation without PLC access",
+      "limitation": "no automatic machine verification or restart",
+      "proof_status": "PROPOSED",
+      "counterargument": "operator burden may exceed benefit"
+    },
+    {
+      "id": "A-ALT2",
+      "pattern": "event-backed cleaning and restart",
+      "benefit": "future machine correlation",
+      "limitation": "release semantics/PLC access/safety unknown",
+      "proof_status": "UNKNOWN",
+      "counterargument": "idle-state automation creates dangerous false equivalence"
+    }
+  ],
+  "mvp": {
+    "actors": [
+      "operator",
+      "supervisor",
+      "QA decision authority for holds"
+    ],
+    "transitions": [
+      "assignment",
+      "step entry",
+      "manual review",
+      "controlled correction"
+    ],
+    "exceptions": [
+      "missing step",
+      "late start",
+      "retrospective entry",
+      "active hold"
+    ],
+    "acceptance_tests": [
+      "completed steps never directly command machine restart",
+      "active hold blocks proposed release",
+      "duplicate entry does not duplicate approval",
+      "operator corrections retain audit"
+    ],
+    "excluded": [
+      "PLC writes",
+      "automatic restart",
+      "ERP integration",
+      "24/7 support"
+    ],
+    "deferred": [
+      "machine event integration following authorised survey"
+    ]
+  },
+  "fit_gap": [
+    {
+      "capability_id": "A-CAP1",
+      "option_id": "A-ALT1",
+      "status": "CONDITIONAL",
+      "evidence_claim_ids": [
+        "A-C1",
+        "A-C7"
+      ],
+      "test": "test forms on authorised VM and correction case"
+    },
+    {
+      "capability_id": "A-CAP2",
+      "option_id": "A-ALT2",
+      "status": "UNKNOWN",
+      "evidence_claim_ids": [
+        "A-C6",
+        "A-C10",
+        "A-C11"
+      ],
+      "test": "approved release matrix and tag audit"
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "A-WP1",
+      "scope": "Two manual forms and one exception flow",
+      "delivery_owner": "proposed app implementer",
+      "estimate_status": "CONDITIONAL",
+      "depends_on": [],
+      "quantity": 3,
+      "unit": "units",
+      "low_days": 8,
+      "high_days": 12,
+      "basis": "2 forms x synthetic 2–3d + 1 exception flow x 4–6d; 8–12d",
+      "condition": "Synthetic scope and unit assumptions; not an industry rate",
+      "reestimate_trigger": "additional approval/exception path"
+    },
+    {
+      "id": "A-WP2",
+      "scope": "Local testing, operator trial and audit verification",
+      "delivery_owner": "site IT + proposed implementer",
+      "estimate_status": "CONDITIONAL",
+      "depends_on": [],
+      "quantity": 1,
+      "unit": "package",
+      "low_days": 3,
+      "high_days": 5,
+      "basis": "synthetic, one authorised test cell",
+      "condition": "Synthetic scope and unit assumptions; not an industry rate",
+      "reestimate_trigger": "identity and retention complexity"
+    },
+    {
+      "id": "A-WP3",
+      "scope": "PLC connectivity, machine events and automatic restart",
+      "delivery_owner": "UNASSIGNED",
+      "estimate_status": "BLOCKED",
+      "depends_on": [
+        "A-U1",
+        "A-U2"
+      ],
+      "unblock_test": "approved semantic/safety/release assessment",
+      "effort_drivers": "Unmeasured/interface and validation scope"
+    }
+  ],
+  "dependency_graph": [
+    {
+      "from": "A-WP3",
+      "to": "A-WP1",
+      "kind": "not-required-for-manual-pilot"
+    }
+  ],
+  "numeric_estimated_scope_only": {
+    "low_days": 11,
+    "high_days": 17,
+    "unit": "engineering days",
+    "included": [
+      "A-WP1",
+      "A-WP2"
+    ],
+    "unestimated": [
+      "A-WP3"
+    ],
+    "status": "CONDITIONAL SYNTHETIC; NON-BINDING"
+  },
+  "rollout": {
+    "first_site": "Only one-cell pilot covered",
+    "site_classes": [],
+    "next_site": "UNESTIMATED"
+  },
+  "lifecycle": {
+    "hosting": "UNESTIMATED",
+    "support": "UNESTIMATED",
+    "upgrade": "UNESTIMATED"
+  },
+  "risks_and_counterevidence": [
+    "If retrospective paper process is already audited, app value may be small",
+    "If QA hold can be bypassed by supervision, release rule must be resolved before any integrated option",
+    "No price or licence figures supplied"
+  ],
+  "decision_gates": [
+    {
+      "id": "A-G1",
+      "status": "OPEN",
+      "owner": "operations+IT+QA",
+      "evidence_to_unblock": "correction rights and authorised VM trial"
+    },
+    {
+      "id": "A-G2",
+      "status": "BLOCKED",
+      "owner": "automation+quality+operations",
+      "evidence_to_unblock": "tag audit, release decision and safety review"
+    }
+  ],
+  "approval": "NOT GRANTED",
+  "commercial_status": "NON-BINDING / NOT FOR CONTRACTING"
+}

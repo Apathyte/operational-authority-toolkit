@@ -1,0 +1,455 @@
+{
+  "case_id": "SYN-B-02",
+  "objective": "Clarify consumed-lot truth, order revision and release authority before selecting software",
+  "boundary": {
+    "unit": "single mixing line",
+    "included": [
+      "planning updates",
+      "material substitution",
+      "execution record",
+      "quality disposition"
+    ],
+    "excluded": [
+      "plant commissioning",
+      "direct live integration"
+    ]
+  },
+  "sources": [
+    {
+      "id": "B-E1",
+      "kind": "INTERVIEW",
+      "assertion": "Planner says orders are changed after issue on busy days.",
+      "limitations": "Reported, no order revision samples."
+    },
+    {
+      "id": "B-E2",
+      "kind": "DOCUMENT",
+      "assertion": "ERP design states order ID is stable but line assignment and quantity can be revised.",
+      "limitations": "Documentation not confirmed in plant."
+    },
+    {
+      "id": "B-E3",
+      "kind": "INTERVIEW",
+      "assertion": "Operator says substitute lots are written on paper if the issued lot is unavailable.",
+      "limitations": "Two interviewees, no witnessed substitution."
+    },
+    {
+      "id": "B-E4",
+      "kind": "DOCUMENT",
+      "assertion": "Quality SOP says substitution needs approval and hold disposition requires QA signature.",
+      "limitations": "Policy text; local practice unverified."
+    },
+    {
+      "id": "B-E5",
+      "kind": "SYSTEM_EXTRACT",
+      "assertion": "Redacted execution CSV has one order with two different consumed lot values; no correction lineage.",
+      "limitations": "Cannot infer which represents physical consumption."
+    },
+    {
+      "id": "B-E6",
+      "kind": "INTERVIEW",
+      "assertion": "IT says lab results arrive with batch ID, sometimes after stock posting.",
+      "limitations": "No timestamps/logs provided."
+    },
+    {
+      "id": "B-E7",
+      "kind": "DOCUMENT",
+      "assertion": "Vendor deck asserts full standard genealogy and automatic QA release.",
+      "limitations": "Marketing assertion; no test or version provided."
+    },
+    {
+      "id": "B-E8",
+      "kind": "DOCUMENT",
+      "assertion": "Production management requires no interruption to existing order issue in pilot.",
+      "limitations": "Stated objective; authority to decide not demonstrated."
+    }
+  ],
+  "claims": [
+    {
+      "id": "B-C1",
+      "state": "REPORTED",
+      "statement": "Order changes may occur after release",
+      "source_ids": [
+        "B-E1"
+      ]
+    },
+    {
+      "id": "B-C2",
+      "state": "REPORTED",
+      "statement": "ERP documentation permits line/quantity revision while preserving order ID",
+      "source_ids": [
+        "B-E2"
+      ]
+    },
+    {
+      "id": "B-C3",
+      "state": "REPORTED",
+      "statement": "Operator describes paper substitute-lot entry",
+      "source_ids": [
+        "B-E3"
+      ]
+    },
+    {
+      "id": "B-C4",
+      "state": "REPORTED",
+      "statement": "Quality policy requires substitution approval and signed release",
+      "source_ids": [
+        "B-E4"
+      ]
+    },
+    {
+      "id": "B-C5",
+      "state": "OBSERVED",
+      "statement": "In supplied redacted CSV, one order has two consumed-lot values; physical truth not determined",
+      "source_ids": [
+        "B-E5"
+      ]
+    },
+    {
+      "id": "B-C6",
+      "state": "REPORTED",
+      "statement": "IT reports lab results may arrive after stock posting",
+      "source_ids": [
+        "B-E6"
+      ]
+    },
+    {
+      "id": "B-C7",
+      "state": "REPORTED",
+      "statement": "Vendor asserts standard genealogy and automatic release without test evidence",
+      "source_ids": [
+        "B-E7"
+      ]
+    },
+    {
+      "id": "B-C8",
+      "state": "UNKNOWN",
+      "statement": "Authoritative event order, correction identity and consumed lot validation absent",
+      "source_ids": [
+        "B-E5"
+      ]
+    },
+    {
+      "id": "B-C9",
+      "state": "INFERRED",
+      "statement": "Latest CSV row may be correction or duplicate, not physical truth",
+      "source_ids": [
+        "B-E5"
+      ],
+      "counter_hypothesis": "Independent signed paper may settle physical lot"
+    },
+    {
+      "id": "B-C10",
+      "state": "PROPOSED",
+      "statement": "A correction audit trial can test whether platform change is necessary",
+      "source_ids": [
+        "B-E3",
+        "B-E5"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "B-OBJ-ORDER",
+      "type": "production-order",
+      "identity": "order-id+revision",
+      "states": [
+        "ISSUED",
+        "REVISED",
+        "CLOSED"
+      ]
+    },
+    {
+      "id": "B-OBJ-LOT",
+      "type": "consumption-record",
+      "identity": "batch-id+lot+event-id",
+      "states": [
+        "PLANNED",
+        "RECORDED",
+        "DISPUTED",
+        "VALIDATED"
+      ]
+    },
+    {
+      "id": "B-OBJ-HOLD",
+      "type": "quality-hold",
+      "identity": "hold-id",
+      "states": [
+        "ACTIVE",
+        "DECIDED",
+        "RELEASED"
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "B-T1",
+      "object_id": "B-OBJ-ORDER",
+      "from": "ISSUED",
+      "to": "REVISED",
+      "trigger": "planner changes assignment",
+      "guard": "revision semantic/consumer contract UNKNOWN",
+      "actor": "planner",
+      "evidence": "ERP revision event UNKNOWN",
+      "failure_path": "old plan must be auditable",
+      "claim_ids": [
+        "B-C1",
+        "B-C2"
+      ]
+    },
+    {
+      "id": "B-T2",
+      "object_id": "B-OBJ-LOT",
+      "from": "PLANNED",
+      "to": "RECORDED",
+      "trigger": "operator consumes/substitutes lot",
+      "guard": "substitution approval UNKNOWN at runtime",
+      "actor": "operator",
+      "evidence": "paper entry or CSV",
+      "failure_path": "reconcile ambiguous lot mapping",
+      "claim_ids": [
+        "B-C3",
+        "B-C4",
+        "B-C5"
+      ]
+    },
+    {
+      "id": "B-T3",
+      "object_id": "B-OBJ-LOT",
+      "from": "RECORDED",
+      "to": "DISPUTED",
+      "trigger": "conflicting recorded lots",
+      "guard": "two recorded values for same object",
+      "actor": "unresolved reviewer",
+      "evidence": "CSV discrepancy",
+      "failure_path": "hold/report mismatch not silent overwrite",
+      "claim_ids": [
+        "B-C5",
+        "B-C8"
+      ]
+    },
+    {
+      "id": "B-T4",
+      "object_id": "B-OBJ-LOT",
+      "from": "DISPUTED",
+      "to": "VALIDATED",
+      "trigger": "physical reconciliation",
+      "guard": "authorised quality/operations proof UNRESOLVED",
+      "actor": "QA + operations",
+      "evidence": "signed reconciliation",
+      "failure_path": "remain disputed",
+      "claim_ids": [
+        "B-C4",
+        "B-C9"
+      ]
+    },
+    {
+      "id": "B-T5",
+      "object_id": "B-OBJ-HOLD",
+      "from": "ACTIVE",
+      "to": "RELEASED",
+      "trigger": "quality signs disposition",
+      "guard": "QA authorisation required per policy",
+      "actor": "QA role",
+      "evidence": "signed disposition evidence",
+      "failure_path": "remain active",
+      "claim_ids": [
+        "B-C4",
+        "B-C6"
+      ]
+    }
+  ],
+  "authority": [
+    {
+      "object_id": "B-OBJ-ORDER",
+      "transition_id": "B-T1",
+      "verb": "DEFINE",
+      "owner": "ERP order schema",
+      "status": "REPORTED",
+      "evidence_ids": [
+        "B-E2"
+      ]
+    },
+    {
+      "object_id": "B-OBJ-ORDER",
+      "transition_id": "B-T1",
+      "verb": "EXECUTE",
+      "owner": "planner",
+      "status": "REPORTED",
+      "evidence_ids": [
+        "B-E1"
+      ]
+    },
+    {
+      "object_id": "B-OBJ-LOT",
+      "transition_id": "B-T2",
+      "verb": "EXECUTE",
+      "owner": "operator",
+      "status": "REPORTED",
+      "evidence_ids": [
+        "B-E3"
+      ]
+    },
+    {
+      "object_id": "B-OBJ-LOT",
+      "transition_id": "B-T4",
+      "verb": "VALIDATE",
+      "owner": "UNRESOLVED",
+      "status": "UNRESOLVED",
+      "evidence_ids": [
+        "B-E4",
+        "B-E5"
+      ]
+    },
+    {
+      "object_id": "B-OBJ-LOT",
+      "transition_id": "B-T4",
+      "verb": "OVERRIDE",
+      "owner": "UNRESOLVED",
+      "status": "UNRESOLVED",
+      "evidence_ids": []
+    },
+    {
+      "object_id": "B-OBJ-HOLD",
+      "transition_id": "B-T5",
+      "verb": "AUTHORISE",
+      "owner": "QA role",
+      "status": "REPORTED",
+      "evidence_ids": [
+        "B-E4"
+      ]
+    },
+    {
+      "object_id": "B-OBJ-HOLD",
+      "transition_id": "B-T5",
+      "verb": "EVIDENCE",
+      "owner": "signed quality record",
+      "status": "REPORTED",
+      "evidence_ids": [
+        "B-E4"
+      ]
+    },
+    {
+      "object_id": "B-OBJ-HOLD",
+      "transition_id": "B-T5",
+      "verb": "EXECUTE",
+      "owner": "UNRESOLVED integration",
+      "status": "UNRESOLVED",
+      "evidence_ids": []
+    }
+  ],
+  "interface_contracts": [
+    {
+      "id": "B-I1",
+      "signal": "order revision",
+      "producer": "ERP",
+      "meaning": "change order association",
+      "timestamp_owner": "UNKNOWN",
+      "mapping_owner": "UNRESOLVED",
+      "idempotency": "UNKNOWN",
+      "acceptance_test": "redacted order revision/replay trail"
+    },
+    {
+      "id": "B-I2",
+      "signal": "lab disposition",
+      "producer": "lab system",
+      "meaning": "lab result not automatically release authority",
+      "timestamp_owner": "UNKNOWN",
+      "mapping_owner": "UNRESOLVED",
+      "idempotency": "UNKNOWN",
+      "acceptance_test": "prove hold decisions and delayed result handling"
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "B-K1",
+      "claim_ids": [
+        "B-C5",
+        "B-C9"
+      ],
+      "could_both_be_true": "CSV stores correction without marked lineage",
+      "arbitration_authority": "UNRESOLVED",
+      "discriminating_test": "approved cross-reference to physical lot issue and correction record"
+    },
+    {
+      "id": "B-K2",
+      "claim_ids": [
+        "B-C4",
+        "B-C7"
+      ],
+      "could_both_be_true": "product may technically auto-release but policy may prohibit delegation",
+      "arbitration_authority": "QA/policy authority",
+      "discriminating_test": "approved test for lab result versus signed disposition"
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "B-U1",
+      "question": "Which lot was physically consumed and by whose correction authority?",
+      "blocks": [
+        "AUTO-GENEALOGY",
+        "WP-B-INTEGRATION"
+      ],
+      "does_not_block": [
+        "CONTROLLED-PAPER-CORRECTION"
+      ],
+      "discriminating_test": "signed sample from physical issue, batch log and revision lineage",
+      "owner_role": "operations + QA"
+    },
+    {
+      "id": "B-U2",
+      "question": "How are late lab results and quality dispositions ordered?",
+      "blocks": [
+        "AUTO-RELEASE",
+        "WP-B-RELEASE"
+      ],
+      "does_not_block": [
+        "AUDIT-ONLY-TRIAL"
+      ],
+      "discriminating_test": "sample event trace with hold + late result",
+      "owner_role": "QA + IT"
+    },
+    {
+      "id": "B-U3",
+      "question": "Does the candidate product support the real exceptions without extensions?",
+      "blocks": [
+        "VENDOR-SELECTION",
+        "WP-B-PRODUCT"
+      ],
+      "does_not_block": [
+        "DATA-RECONCILIATION-DISCOVERY"
+      ],
+      "discriminating_test": "vendor-specific witnessed scenario demo plus version/contract",
+      "owner_role": "solution owner"
+    }
+  ],
+  "gates": [
+    {
+      "id": "B-G1",
+      "decision": "reconcile one consumption event",
+      "status": "OPEN",
+      "required_evidence": [
+        "signed correction/physical lot proof"
+      ],
+      "decision_owner": "operations + quality"
+    },
+    {
+      "id": "B-G2",
+      "decision": "select production software",
+      "status": "BLOCKED",
+      "required_evidence": [
+        "exception capability demo",
+        "master-data readiness",
+        "ownership model"
+      ],
+      "decision_owner": "product/operations authority"
+    }
+  ],
+  "design_approval": "NOT GRANTED",
+  "falsification_tests": [
+    "Show last-recorded lot differs from actual consumed lot",
+    "Show late lab result while stock is already posted",
+    "Test duplicate order revision and correction lineage",
+    "Test candidate vendor on unauthorised release and substitution"
+  ]
+}

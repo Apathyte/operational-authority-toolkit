@@ -1,0 +1,309 @@
+{
+  "case_id": "SYN-C-02",
+  "objective": "Test template reuse against site classes and lifecycle ownership",
+  "boundary": {
+    "unit": "three fictional sites",
+    "included": [
+      "workflow and site-variation evidence"
+    ],
+    "excluded": [
+      "real commissioning",
+      "commercial approval"
+    ]
+  },
+  "sources": [
+    {
+      "id": "C-E1",
+      "kind": "DOCUMENT",
+      "assertion": "Site East has three identical stations sharing one event contract.",
+      "limitations": "Design-only claim, no runtime evidence."
+    },
+    {
+      "id": "C-E2",
+      "kind": "DOCUMENT",
+      "assertion": "Site West has matching workflow but different controller family and timestamp format.",
+      "limitations": "Compatibility work not surveyed."
+    },
+    {
+      "id": "C-E3",
+      "kind": "INTERVIEW",
+      "assertion": "Site South uses an independent QA disposition and extra local deviation state.",
+      "limitations": "Reported; not in global template."
+    },
+    {
+      "id": "C-E4",
+      "kind": "DOCUMENT",
+      "assertion": "Standard design covers two check screens, one approval flow, and audit log.",
+      "limitations": "Template proposal, not delivered."
+    },
+    {
+      "id": "C-E5",
+      "kind": "DOCUMENT",
+      "assertion": "Global sponsor requests all sites counted as direct copies.",
+      "limitations": "Stakeholder intent, not evidence."
+    },
+    {
+      "id": "C-E6",
+      "kind": "DOCUMENT",
+      "assertion": "Support/hosting/upgrade service owner not assigned.",
+      "limitations": "No lifecycle contract."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-C1",
+      "state": "REPORTED",
+      "statement": "East design claims uniform station event contract",
+      "source_ids": [
+        "C-E1"
+      ]
+    },
+    {
+      "id": "C-C2",
+      "state": "REPORTED",
+      "statement": "West requires a different controller/timestamp adapter",
+      "source_ids": [
+        "C-E2"
+      ]
+    },
+    {
+      "id": "C-C3",
+      "state": "REPORTED",
+      "statement": "South has a separate QA disposition and deviation state",
+      "source_ids": [
+        "C-E3"
+      ]
+    },
+    {
+      "id": "C-C4",
+      "state": "REPORTED",
+      "statement": "Template scope proposes two check screens and approval/audit",
+      "source_ids": [
+        "C-E4"
+      ]
+    },
+    {
+      "id": "C-C5",
+      "state": "REPORTED",
+      "statement": "Sponsor wants copy-and-paste pricing",
+      "source_ids": [
+        "C-E5"
+      ]
+    },
+    {
+      "id": "C-C6",
+      "state": "REPORTED",
+      "statement": "No hosting/support owner assigned",
+      "source_ids": [
+        "C-E6"
+      ]
+    },
+    {
+      "id": "C-C7",
+      "state": "INFERRED",
+      "statement": "South is not currently a simple parameter-only rollout",
+      "source_ids": [
+        "C-E3"
+      ],
+      "counter_hypothesis": "Site-specific workflow may be proven equivalent after review"
+    },
+    {
+      "id": "C-C8",
+      "state": "UNKNOWN",
+      "statement": "Runtime availability and event semantics not demonstrated",
+      "source_ids": [
+        "C-E1",
+        "C-E2"
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "C-OBJ-CHECK",
+      "type": "inspection",
+      "identity": "site+station+check-id",
+      "states": [
+        "ASSIGNED",
+        "SUBMITTED",
+        "APPROVED",
+        "REJECTED"
+      ]
+    },
+    {
+      "id": "C-OBJ-DEVIATION",
+      "type": "deviation",
+      "identity": "site+deviation-id",
+      "states": [
+        "OPEN",
+        "DISPOSITIONED",
+        "CLOSED"
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "C-T1",
+      "object_id": "C-OBJ-CHECK",
+      "from": "ASSIGNED",
+      "to": "SUBMITTED",
+      "trigger": "operator checks",
+      "guard": "identity/clock semantics site-specific",
+      "actor": "operator",
+      "evidence": "audit event",
+      "failure_path": "retry not duplicate",
+      "claim_ids": [
+        "C-C4",
+        "C-C8"
+      ]
+    },
+    {
+      "id": "C-T2",
+      "object_id": "C-OBJ-CHECK",
+      "from": "SUBMITTED",
+      "to": "APPROVED",
+      "trigger": "authorised reviewer decision",
+      "guard": "role governance requires site proof",
+      "actor": "reviewer",
+      "evidence": "signed approval",
+      "failure_path": "remain pending if absent",
+      "claim_ids": [
+        "C-C4"
+      ]
+    },
+    {
+      "id": "C-T3",
+      "object_id": "C-OBJ-DEVIATION",
+      "from": "OPEN",
+      "to": "DISPOSITIONED",
+      "trigger": "local QA decision",
+      "guard": "South state/authority differs",
+      "actor": "QA",
+      "evidence": "disposition record",
+      "failure_path": "cannot silently inherit template",
+      "claim_ids": [
+        "C-C3"
+      ]
+    }
+  ],
+  "authority": [
+    {
+      "object_id": "C-OBJ-CHECK",
+      "transition_id": "C-T2",
+      "verb": "AUTHORISE",
+      "owner": "reviewer role PROPOSED",
+      "status": "PROPOSED",
+      "evidence_ids": [
+        "C-E4"
+      ]
+    },
+    {
+      "object_id": "C-OBJ-DEVIATION",
+      "transition_id": "C-T3",
+      "verb": "AUTHORISE",
+      "owner": "South QA role REPORTED",
+      "status": "REPORTED",
+      "evidence_ids": [
+        "C-E3"
+      ]
+    },
+    {
+      "object_id": "C-OBJ-CHECK",
+      "transition_id": "C-T1",
+      "verb": "EVIDENCE",
+      "owner": "event contract",
+      "status": "REPORTED",
+      "evidence_ids": [
+        "C-E1"
+      ]
+    }
+  ],
+  "interface_contracts": [
+    {
+      "id": "C-I1",
+      "signal": "station event",
+      "producer": "site event adapter",
+      "meaning": "inspection state proposal",
+      "timestamp_owner": "UNKNOWN at West",
+      "mapping_owner": "UNRESOLVED",
+      "idempotency": "must be specified",
+      "acceptance_test": "same event scenario on East and West"
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "C-K1",
+      "claim_ids": [
+        "C-C3",
+        "C-C5"
+      ],
+      "could_both_be_true": "sponsor wants copies but South varies",
+      "arbitration_authority": "site + global product owner",
+      "discriminating_test": "map South deviation and role model to template"
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "C-U1",
+      "question": "Can West event timestamp and identity be normalised?",
+      "blocks": [
+        "WEST-ADAPTER-ACCEPTANCE"
+      ],
+      "does_not_block": [
+        "EAST-REFERENCE-DESIGN"
+      ],
+      "discriminating_test": "authorised adapter sample and replay",
+      "owner_role": "West OT integration owner"
+    },
+    {
+      "id": "C-U2",
+      "question": "Does South require a separate disposition workflow?",
+      "blocks": [
+        "SOUTH-ROLLOUT-ESTIMATE"
+      ],
+      "does_not_block": [
+        "EAST-REFERENCE-DESIGN"
+      ],
+      "discriminating_test": "site-specific QA authority/state workshop and negative test",
+      "owner_role": "South QA"
+    },
+    {
+      "id": "C-U3",
+      "question": "Who operates hosting, support and upgrades?",
+      "blocks": [
+        "FULL-TCO",
+        "GO-LIVE-SERVICE"
+      ],
+      "does_not_block": [
+        "REFERENCE-DESIGN"
+      ],
+      "discriminating_test": "service catalogue with explicit owners and rates",
+      "owner_role": "IT + operations"
+    }
+  ],
+  "gates": [
+    {
+      "id": "C-G1",
+      "decision": "reference template",
+      "status": "OPEN",
+      "required_evidence": [
+        "East runtime contract and witnessed acceptance"
+      ],
+      "decision_owner": "global process owner"
+    },
+    {
+      "id": "C-G2",
+      "decision": "South rollout",
+      "status": "BLOCKED",
+      "required_evidence": [
+        "QA deviation parity and authority decision"
+      ],
+      "decision_owner": "site QA + product owner"
+    }
+  ],
+  "design_approval": "NOT GRANTED",
+  "falsification_tests": [
+    "West event timestamps differ under replay",
+    "South QA may veto global template approval",
+    "Support costing cannot vanish by multiplying engineering range"
+  ]
+}

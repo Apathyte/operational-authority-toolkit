@@ -1,0 +1,67 @@
+{
+  "case_id": "SYN-C-02",
+  "synthetic": true,
+  "scenario": "Fictional three-site rollout of a common inspection workflow",
+  "request": "Quote all three sites as exact copies of the first.",
+  "boundary": "One reference inspection workflow; three fictional facilities; no production data",
+  "sources": [
+    {
+      "id": "C-E1",
+      "kind": "DOCUMENT",
+      "assertion": "Site East has three identical stations sharing one event contract.",
+      "limitations": "Design-only claim, no runtime evidence."
+    },
+    {
+      "id": "C-E2",
+      "kind": "DOCUMENT",
+      "assertion": "Site West has matching workflow but different controller family and timestamp format.",
+      "limitations": "Compatibility work not surveyed."
+    },
+    {
+      "id": "C-E3",
+      "kind": "INTERVIEW",
+      "assertion": "Site South uses an independent QA disposition and extra local deviation state.",
+      "limitations": "Reported; not in global template."
+    },
+    {
+      "id": "C-E4",
+      "kind": "DOCUMENT",
+      "assertion": "Standard design covers two check screens, one approval flow, and audit log.",
+      "limitations": "Template proposal, not delivered."
+    },
+    {
+      "id": "C-E5",
+      "kind": "DOCUMENT",
+      "assertion": "Global sponsor requests all sites counted as direct copies.",
+      "limitations": "Stakeholder intent, not evidence."
+    },
+    {
+      "id": "C-E6",
+      "kind": "DOCUMENT",
+      "assertion": "Support/hosting/upgrade service owner not assigned.",
+      "limitations": "No lifecycle contract."
+    }
+  ],
+  "declared_synthetic_estimate_basis": {
+    "reference_workflow": {
+      "quantity": 1,
+      "low_days_per_unit": 15,
+      "high_days_per_unit": 24
+    },
+    "east_rollout": {
+      "quantity": 1,
+      "low_days_per_unit": 4,
+      "high_days_per_unit": 7
+    },
+    "west_adapter": {
+      "quantity": 1,
+      "low_days_per_unit": 8,
+      "high_days_per_unit": 13
+    }
+  },
+  "prohibited_by_fixture": [
+    "Multiply first-site effort by three as asserted fact",
+    "Assume Site South is simple T0 clone",
+    "Publish numerical complete TCO without support costs"
+  ]
+}

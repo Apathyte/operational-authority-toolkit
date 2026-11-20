@@ -1,0 +1,253 @@
+{
+  "case_id": "SYN-C-02",
+  "objective": "Sell a conditional template strategy rather than fictional copy-paste pricing",
+  "upstream_claim_ids": [
+    "C-C1",
+    "C-C2",
+    "C-C3",
+    "C-C4",
+    "C-C5",
+    "C-C6",
+    "C-C7",
+    "C-C8"
+  ],
+  "capabilities": [
+    {
+      "id": "C-CAP1",
+      "name": "reusable inspection workflow",
+      "acceptance_metric": "East accepted template with event replay and approval test",
+      "evidence": "C-C4"
+    },
+    {
+      "id": "C-CAP2",
+      "name": "site-compliant disposition",
+      "acceptance_metric": "South deviation cannot bypass local QA authority",
+      "evidence": "C-C3"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "C-ALT0",
+      "pattern": "site-local procedures only",
+      "benefit": "avoids global product dependency",
+      "limitation": "weak reusable visibility",
+      "proof_status": "PROPOSED",
+      "counterargument": "long-term audit fragmentation"
+    },
+    {
+      "id": "C-ALT1",
+      "pattern": "template with classified site adapters",
+      "benefit": "reuses common workflow while surfacing variation",
+      "limitation": "site proof and governance required",
+      "proof_status": "CONDITIONAL",
+      "counterargument": "template maintenance overhead"
+    },
+    {
+      "id": "C-ALT2",
+      "pattern": "independent site builds",
+      "benefit": "max site autonomy",
+      "limitation": "higher maintenance divergence",
+      "proof_status": "PROPOSED",
+      "counterargument": "may be necessary for South if authority models truly differ"
+    }
+  ],
+  "mvp": {
+    "actors": [
+      "operator",
+      "reviewer"
+    ],
+    "transitions": [
+      "inspection submit",
+      "review approve/reject"
+    ],
+    "exceptions": [
+      "duplicate event",
+      "missed check",
+      "QA deviation at South"
+    ],
+    "acceptance_tests": [
+      "East reference replay and role refusal",
+      "West adapter clock normalisation",
+      "South local QA exception requires separate authorisation"
+    ],
+    "excluded": [
+      "unproved South build",
+      "24/7 service",
+      "all-site fixed-price commitment"
+    ],
+    "deferred": [
+      "South fit review",
+      "full lifecycle quote"
+    ]
+  },
+  "fit_gap": [
+    {
+      "capability_id": "C-CAP1",
+      "option_id": "C-ALT1",
+      "status": "CONDITIONAL",
+      "evidence_claim_ids": [
+        "C-C1",
+        "C-C4"
+      ],
+      "test": "East runtime acceptance"
+    },
+    {
+      "capability_id": "C-CAP2",
+      "option_id": "C-ALT1",
+      "status": "UNKNOWN",
+      "evidence_claim_ids": [
+        "C-C3",
+        "C-C7"
+      ],
+      "test": "South disposition transition with authorised actor"
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "C-WP-REF",
+      "scope": "reference template workflow build",
+      "delivery_owner": "proposed implementation team",
+      "estimate_status": "CONDITIONAL",
+      "depends_on": [],
+      "quantity": 1,
+      "unit": "reference build",
+      "low_days": 15,
+      "high_days": 24,
+      "basis": "one synthetic reference workflow unit",
+      "condition": "Synthetic scope and unit assumptions; not an industry rate",
+      "reestimate_trigger": "additional exception workflows"
+    },
+    {
+      "id": "C-WP-EAST",
+      "scope": "East T0 parameterised rollout",
+      "delivery_owner": "proposed site team",
+      "estimate_status": "CONDITIONAL",
+      "depends_on": [],
+      "quantity": 1,
+      "unit": "site",
+      "low_days": 4,
+      "high_days": 7,
+      "basis": "synthetic T0 adaptation+verification",
+      "condition": "Synthetic scope and unit assumptions; not an industry rate",
+      "reestimate_trigger": "event contract not actually identical"
+    },
+    {
+      "id": "C-WP-WEST",
+      "scope": "West T1 timestamp/controller adapter + validation",
+      "delivery_owner": "proposed OT integration partner",
+      "estimate_status": "CONDITIONAL",
+      "depends_on": [],
+      "quantity": 1,
+      "unit": "adapter",
+      "low_days": 8,
+      "high_days": 13,
+      "basis": "synthetic T1 adapter, partner effort not included in SI delivery price",
+      "condition": "Synthetic scope and unit assumptions; not an industry rate",
+      "reestimate_trigger": "no stable event contract"
+    },
+    {
+      "id": "C-WP-SOUTH",
+      "scope": "South T2 authority and deviation redesign",
+      "delivery_owner": "UNASSIGNED",
+      "estimate_status": "BLOCKED",
+      "depends_on": [
+        "C-U2"
+      ],
+      "unblock_test": "QA state/permission model approved",
+      "effort_drivers": "Unmeasured/interface and validation scope"
+    },
+    {
+      "id": "C-WP-SERVICE",
+      "scope": "hosting, upgrades and support",
+      "delivery_owner": "UNASSIGNED",
+      "estimate_status": "BLOCKED",
+      "depends_on": [
+        "C-U3"
+      ],
+      "unblock_test": "service scope, owners and price assumptions",
+      "effort_drivers": "Unmeasured/interface and validation scope"
+    }
+  ],
+  "dependency_graph": [
+    {
+      "from": "C-WP-WEST",
+      "to": "C-WP-REF",
+      "kind": "requires validated template"
+    },
+    {
+      "from": "C-WP-SOUTH",
+      "to": "C-WP-REF",
+      "kind": "new QA design, not simple clone"
+    }
+  ],
+  "numeric_estimated_scope_only": {
+    "low_days": 27,
+    "high_days": 44,
+    "unit": "engineering days",
+    "included": [
+      "C-WP-REF",
+      "C-WP-EAST",
+      "C-WP-WEST"
+    ],
+    "unestimated": [
+      "C-WP-SOUTH",
+      "C-WP-SERVICE"
+    ],
+    "status": "CONDITIONAL SYNTHETIC; estimated engineering coverage only"
+  },
+  "rollout": {
+    "first_site": "Reference C-WP-REF: 15–24 synthetic engineering-days",
+    "site_classes": [
+      {
+        "site": "East",
+        "class": "T0",
+        "status": "CONDITIONAL 4–7d"
+      },
+      {
+        "site": "West",
+        "class": "T1",
+        "status": "CONDITIONAL 8–13d"
+      },
+      {
+        "site": "South",
+        "class": "T2",
+        "status": "BLOCKED / not a copy"
+      }
+    ],
+    "next_site": "Depends on verified class and acceptance; no universal multiplication"
+  },
+  "lifecycle": {
+    "hosting": "UNESTIMATED",
+    "support": "UNESTIMATED",
+    "upgrade": "UNESTIMATED",
+    "tco_status": "INCOMPLETE — no numeric total"
+  },
+  "risks_and_counterevidence": [
+    "If site runtime evidence differs, T0 becomes T1/T2",
+    "South QA authority invalidates common release model",
+    "West partner allocation needs separate contract",
+    "Missing service estimate means no complete TCO"
+  ],
+  "decision_gates": [
+    {
+      "id": "C-G1",
+      "status": "OPEN",
+      "owner": "global process + East site",
+      "evidence_to_unblock": "witnessed reference acceptance"
+    },
+    {
+      "id": "C-G2",
+      "status": "BLOCKED",
+      "owner": "South QA",
+      "evidence_to_unblock": "local deviation authority parity"
+    },
+    {
+      "id": "C-G3",
+      "status": "BLOCKED",
+      "owner": "IT + operations",
+      "evidence_to_unblock": "support/hosting contract"
+    }
+  ],
+  "approval": "NOT GRANTED",
+  "commercial_status": "NON-BINDING / NOT FOR CONTRACTING"
+}
