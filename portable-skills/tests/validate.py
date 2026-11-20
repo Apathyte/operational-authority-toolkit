@@ -11,6 +11,20 @@ class SkillsV02(unittest.TestCase):
    f=ROOT/'skills'/name/'SKILL.md';t=f.read_text(encoding='utf-8')
    self.assertTrue(t.startswith('---\n'));self.assertIn(f'name: {name}',t);self.assertIn('version: "0.2.0"',t)
    self.assertIn('license: CC0-1.0',t);self.assertLess(len(t.splitlines()),500)
+   # Description is a JSON double-quoted string, valid as a YAML scalar.
+   # This protects against the easily missed unquoted ': ' YAML mapping error.
+   frontmatter=t.split('---',2)[1].strip()
+   desc=next((line[len('description: '):] for line in frontmatter.splitlines() if line.startswith('description: ')),None)
+   self.assertIsNotNone(desc)
+   self.assertTrue(desc.startswith('"') and desc.endswith('"'),f'{name}: quote the description scalar')
+   self.assertIsInstance(json.loads(desc),str)
+   # When PyYAML is available, verify parsing using a real YAML loader.
+   try: import yaml
+   except ImportError: pass
+   else:
+    parsed=yaml.safe_load(frontmatter)
+    self.assertEqual(parsed['name'],name)
+    self.assertEqual(parsed['metadata']['version'],'0.2.0')
    for href in re.findall(r'\]\((references/[^)]+)\)',t):self.assertTrue((f.parent/href).is_file(),href)
  def test_worked_cases(self):
   for case in 'abc':
