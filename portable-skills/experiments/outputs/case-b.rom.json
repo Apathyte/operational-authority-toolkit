@@ -1,0 +1,114 @@
+{
+  "case_id": "CASE-B-FICTIONAL",
+  "source_claim_ids": [
+    "B-C1",
+    "B-C2",
+    "B-C3",
+    "B-C4",
+    "B-C5"
+  ],
+  "target_capability": "Operator checks, controlled hold/release and local audit record",
+  "alternatives": [
+    {
+      "name": "digitised forms only",
+      "tradeoff": "lowest interface dependency, weaker event reconciliation"
+    },
+    {
+      "name": "event-backed local workflow",
+      "tradeoff": "more traceability, depends on event service integration and quality decision"
+    }
+  ],
+  "mvp": {
+    "outcome": "Two check screens and supervised hold creation; release remains explicitly human-authorised",
+    "boundary": "one cell; existing local event contract",
+    "acceptance_evidence": "checks linked to order ID, hold trace and witnessed role-based release test",
+    "exclusions": [
+      "automatic quality release",
+      "PLC changes",
+      "enterprise rollout",
+      "24/7 support"
+    ]
+  },
+  "fit_gap": [
+    {
+      "requirement": "two check screens",
+      "source_claim_id": "B-C2",
+      "status": "CONDITIONAL",
+      "note": "proposed implementation; not approved"
+    },
+    {
+      "requirement": "event data",
+      "source_claim_id": "B-C1",
+      "status": "CONDITIONAL",
+      "note": "design documented but uptime unverified"
+    },
+    {
+      "requirement": "quality release rights",
+      "source_claim_id": "B-C5",
+      "status": "UNKNOWN",
+      "note": "quality approval needed"
+    }
+  ],
+  "ownership": [
+    {
+      "boundary": "event contract",
+      "owner": "PROVISIONAL interface maintainer per B-E4"
+    },
+    {
+      "boundary": "quality release",
+      "owner": "UNASSIGNED pending quality approval"
+    },
+    {
+      "boundary": "deployment/support",
+      "owner": "UNASSIGNED pending G2"
+    }
+  ],
+  "estimate_status": "CONDITIONAL ROM",
+  "estimate_basis": "Fictional planning basis only: 2 documented screens, 1 hold/release flow, 3 existing event types, single-cell deployment. Assumes usable events and approved acceptance model; not an industry productivity benchmark.",
+  "workstreams": [
+    {
+      "name": "workflow and two screens",
+      "low_days": 10,
+      "high_days": 17,
+      "basis": "two screens plus hold flow, synthetic engineering-day planning assumption"
+    },
+    {
+      "name": "event/audit integration",
+      "low_days": 5,
+      "high_days": 9,
+      "basis": "three documented event types, synthetic assumption"
+    },
+    {
+      "name": "test, deployment, training",
+      "low_days": 8,
+      "high_days": 13,
+      "basis": "one cell and one acceptance cycle, synthetic assumption"
+    }
+  ],
+  "rom_total": {
+    "low_days": 23,
+    "high_days": 39,
+    "unit": "engineering days",
+    "excludes": [
+      "24/7 support",
+      "future site rollout",
+      "event-service remediation",
+      "quality/compliance validation beyond scoped acceptance"
+    ]
+  },
+  "external_dependencies": [
+    "B-U1",
+    "B-U2"
+  ],
+  "risks": [
+    "Quality sign-off absent",
+    "Local event runtime quality unproven",
+    "After-hours support costs excluded"
+  ],
+  "decision_gates": [
+    "G1: approve release authority and audit retention before implementation",
+    "G2: prove event service in target environment",
+    "G2: assign deployment and support ownership; separate cost"
+  ],
+  "commercial_status": "NON-BINDING / NOT FOR CONTRACTING"
+}
