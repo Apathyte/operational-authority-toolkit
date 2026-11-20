@@ -16,6 +16,8 @@ Readable Markdown first; JSON optional. Preserve all source/claim IDs from disco
   "numeric_estimated_scope_only":null,
   "rollout":{"first_site":"UNESTIMATED","site_classes":[],"next_site":"UNESTIMATED"},
   "lifecycle":{"hosting":"UNESTIMATED","support":"UNESTIMATED","upgrade":"UNESTIMATED"},
+  "schedule_feasibility":{"status":"UNESTIMATED","effort_days_vs_elapsed":"SEPARATE","dependency_graph":[],"resource_allocations":[],"execution_status":"NOT EXECUTED"},
+  "rom_lineage":{"versions":[],"canonical_deliverables":[],"scope_bridge":[],"supplier_collisions":[],"gross_status":"UNKNOWN","net_status":"NET UNRESOLVED"},
   "risks_and_counterevidence":[],
   "decision_gates":[{"id":"G1","status":"OPEN","owner":"UNASSIGNED","evidence_to_unblock":"..."}],
   "approval":"NOT GRANTED",
@@ -34,7 +36,9 @@ Numeric WP entries, when included, must carry `quantity`, `unit`, `basis_source_
 5. Responsibility and integration graph
 6. Fit/gap by capability and *proof status*
 7. Per-WP estimate readiness and estimated-scope-only conditional ranges
-8. Full-scope rollout/lifecycle coverage (or why unestimated)
-9. Strongest objection, gating evidence and named decision roles
+8. When multiple versions/suppliers: canonical WP comparison, source/owner/acceptor trace, gross versus net, overlap status
+9. Shared-resource schedule feasibility (when triggered) with resource assumptions and replay proof or `NOT EXECUTED`
+10. Full-scope rollout/lifecycle coverage (or why unestimated)
+11. Strongest objection, gating evidence and named decision roles
 
 A colleague should be able to take only this memo, challenge the assumptions and decide what evidence to commission next. It must not depend on knowing who originally prompted the agent.

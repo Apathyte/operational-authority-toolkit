@@ -14,6 +14,9 @@ For every substantial recommendation, generate **one credible way it fails**, th
 | Estimating by screen count | backend exception cost ignored | count workflows, events, states, dependencies, test burden |
 | 'Partner will handle it' | cost/risk shoved into SI | named deliverable, acceptance owner and separate estimate |
 | All factories the same | first-site clone imagined | classify site variation T0/T1/T2, requalification |
+| Narrower revised ROM | numeric range mistaken for reduced risk | compare scope/version/owner/deliverable IDs before delta |
+| Double-accounted acceptance | product vendor and SI both claim same line | gross-vs-net collision audit, no unverified subtraction |
+| Clockless delivery target | engineering-days mistaken for elapsed weeks | resource/calendar constraint and release-window sensitivity |
 | Hidden service | no budget for operating the system | 24/7/SLA/maintenance explicitly purchased or excluded |
 | Management enthusiasm | operators not equipped or willing | adoption proof and exception trial with operators |
 | Substitution trap | no one compares simplest option | minimal intervention and measurable benefit |

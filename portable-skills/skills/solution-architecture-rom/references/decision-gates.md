@@ -20,6 +20,12 @@ G4 **Commercial:** Independently review effort, licences, schedule dependencies,
 
 G5 **Release:** Only after validation, operational acceptance and appropriate safety/quality/security controls; never issued by this skill.
 
+## Extra gates for versioned estimates and timed workflows
+
+- **Revision gate:** no `NET RECONCILED` if suppliers overlap without identical deliverable/acceptance definitions and quantified owner-approved workshare. A price target is not a calibration datum.
+- **Schedule gate:** work-package days do not imply elapsed delivery time. Require role capacity, shared-resource calendars, source readiness, integration/acceptance prerequisites and release windows before stating a timeline; otherwise `UNESTIMATED`.
+- **Product proof gate:** an adjacent feature demonstration never promotes the requested operational variant to `FIT`. Obtain scenario-appropriate negative tests and target-version evidence.
+
 ## Stop / defer / proceed conditions
 
 - `PROCEED FOR DESIGN REVIEW`: evidence adequate for scoped engineering design only.

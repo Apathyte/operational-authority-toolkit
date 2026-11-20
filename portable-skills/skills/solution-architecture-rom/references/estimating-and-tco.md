@@ -23,9 +23,17 @@ For each bounded WP, calculate from explicit components: `quantity × low effort
 - Third-party costs cannot be silently treated as SI engineering effort. Licences, cloud, hardware, travel, integration partners and 24/7 services are separate unknown/known lines.
 - A range is conditional on both the workload and the *contractual ownership*. `No risk-eating`: unowned interfaces are not assumed to be delivered at the SI's cost.
 
+## Stage 1b — elapsed delivery and shared resource feasibility
+
+If a delivery promise or operational benefit depends on shared resources, use any separately supplied discovery temporal/resource analysis when legitimately available, or independently construct a bounded **hypothetical** precedence/resource graph without inventing observations. Record resource arrival, job readiness, actual start and finish as distinct quantities; `resource_wait=max(0,ready-arrival)` and `job_ready_before_resource=max(0,arrival-ready)` apply only to valid non-preemptive schedule assumptions. Separate engineering days from elapsed time: availability by role (days/week), dependencies, parallel lanes, customer access, acceptance cycles and release windows determine duration. When no schedule inputs are available, mark calendar feasibility `UNESTIMATED`. Execute small, deterministic scenario arithmetic if tools are available; otherwise record `NOT EXECUTED` with expected assertions. Do not make an invented schedule a contract commitment.
+
 ## Stage 2 — sensitivity and correlated risk
 
 Describe dominant drivers, what would change the bound, and common-cause correlations (e.g., bad machine identity affects tagging, event mapping, test and support). A scenario view (`BASE`, `HARDER`, `SCOPE-REDUCED`) is often more honest than pretending independent probabilities can be multiplied. Do not present confidence percentages without empirical calibration. If essential validity fails, withdraw the numeric scope rather than adding an arbitrary buffer.
+
+## Stage 2b — comparing revisions and multiple suppliers
+
+A total is meaningful only against a stable scope. Read [ROM lineage and overlap](rom-lineage-and-overlap.md) whenever estimates have multiple dates or suppliers. Preserve gross supplier lines, canonical deliverable IDs and approval/acceptance responsibilities. Use `NET UNRESOLVED` if matching tasks overlap but the duplicated amount isn't evidenced; do not infer increased certainty because a revised range looks narrower.
 
 ## Stage 3 — first factory and rollout
 

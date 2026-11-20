@@ -18,6 +18,10 @@ For each capability/option, record `source_claim_ids`, `demonstrated|documented|
 
 Use `FIT` only for a capability actually evidenced within the requested boundary; `CONDITIONAL` when a known precondition applies; `GAP` when contrary evidence exists; `UNKNOWN` when unverified. A capability being sold/licensed does not make it integrated, commissioned or accepted.
 
+## Proof-state progression and adjacent-demo trap
+
+For each claimed product capability retain the evidence level: `DOCUMENTED`, `VENDOR ASSERTED`, `TENANT DEMONSTRATED (exact scenario/version)`, `COMMISSIONED (target environment)`, `OPERATIONS ACCEPTED (real acceptance record)`. These describe *different evidence*, not an automatic hierarchy where later status implies every use case passed. Demonstrating order-linked changeover does **not** demonstrate a clock-triggered independent daily task. Demonstrating a sign-off doesn't prove separate roles, offline behavior, signatures, export or audit retention; demand the **negative acceptance cases** for the exact workflow variant. Preserve requested capability `UNKNOWN/CONDITIONAL` until relevant proof; never label site-level `FIT` from a marketing deck.
+
 ## Reject attractive answers when
 
 - The requested vendor product solves a different problem from the one demonstrated.
