@@ -27,6 +27,10 @@ For each deliverable/integration boundary capture `delivery_owner`, `semantic_ow
 | Deployment | environments, backup, release, acceptance, training | who operates at go-live? |
 | Service | monitoring, restoration, patching, 24/7, SLAs | what is explicitly excluded vs purchased? |
 
+## Revision lineage and supplier collision
+
+When vendor and integrator both claim work on an interface, configuration, UAT or acceptance, tag each with canonical deliverable ID and acceptance boundary. Compare supplier **gross** effort and retain `NET UNRESOLVED` until overlap is quantified and accepted. Do not assign product vendor testing, integrated testing and site acceptance the same ID without proof. See [ROM revision playbook](rom-lineage-and-overlap.md).
+
 ## Fit/gap decisions and change control
 
 `FIT` requires credible proof under site conditions; `CONDITIONAL` requires owner and evidence; `GAP` requires a mitigation or explicit out-of-scope; `UNKNOWN` requires a targeted experiment. Differentiate native product configuration from extension/custom code, a special integration, and operational change. Classify variation by parameterisation / site adapter / product extension / new design. Do not market every variation as a 'template'.

@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""v0.2 portable package acceptance. Runs fully offline with Python stdlib."""
+"""v0.3 portable package acceptance; includes v0.2 historical oracle plus v0.3 tests."""
 import copy,json,re,unittest
 from pathlib import Path
 from grade import check,ROOT,load
+from test_v03 import V03Tests
 class SkillsV02(unittest.TestCase):
  def files(self,case):
   return ROOT/'experiments/outputs-v02'/f'case-{case}.discovery.json',ROOT/'experiments/outputs-v02'/f'case-{case}.rom.json'
  def test_entrypoints_and_linked_refs(self):
   for name in ('ot-discovery','solution-architecture-rom'):
    f=ROOT/'skills'/name/'SKILL.md';t=f.read_text(encoding='utf-8')
-   self.assertTrue(t.startswith('---\n'));self.assertIn(f'name: {name}',t);self.assertIn('version: "0.2.0"',t)
+   self.assertTrue(t.startswith('---\n'));self.assertIn(f'name: {name}',t);self.assertIn('version: "0.3.0"',t)
    self.assertIn('license: CC0-1.0',t);self.assertLess(len(t.splitlines()),500)
    # Description is a JSON double-quoted string, valid as a YAML scalar.
    # This protects against the easily missed unquoted ': ' YAML mapping error.
@@ -24,7 +25,7 @@ class SkillsV02(unittest.TestCase):
    else:
     parsed=yaml.safe_load(frontmatter)
     self.assertEqual(parsed['name'],name)
-    self.assertEqual(parsed['metadata']['version'],'0.2.0')
+    self.assertEqual(parsed['metadata']['version'],'0.3.0')
    for href in re.findall(r'\]\((references/[^)]+)\)',t):self.assertTrue((f.parent/href).is_file(),href)
  def test_worked_cases(self):
   for case in 'abc':
