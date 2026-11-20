@@ -2,14 +2,18 @@
 
 ## Scope
 
-This repository distributes documents and templates. It does not contain or require executable application code, package managers, runtime dependencies, credentials, network services, or installation scripts.
+The original pinned toolkit distribution contains documents and templates. The optional **experimental `portable-skills/` package now also contains Python standard-library scripts** for offline evaluation of synthetic examples, plus a pull-request CI workflow. The scripts are not a production runtime, network service, or connector; they require no credentials or OT access. Review all executable text before running it.
 
-The published artefacts are:
+The pinned published toolkit artefacts are:
 
 - PDF for print and workshop use;
 - DOCX for editing the full pack;
 - XLSX for working directly in the authority matrix;
 - ZIP containing the distributed toolkit files.
+
+## Experimental Agent Skills (v0.3 draft)
+
+The two `SKILL.md` files are **advisory instructions for compatible AI hosts**, not permission to access data, control equipment, execute commands, approve quality, or commit a company financially. A host can have its own tools and privileges; installers must enforce their organisational limits separately. Supporting `tests/*.py` scripts use Python standard library only, read local synthetic fixtures, and can run in a scoped GitHub Actions workflow. The workflow uses GitHub-hosted execution and pinned action major versions, so its supply-chain profile is distinct from the downloadable toolkit documents. No SHA-256 claim is made for the mutable draft skill tree; use a commit hash for reproducibility. Do not upload confidential customer files or credentials as fixtures.
 
 ## Safe use
 
@@ -40,7 +44,7 @@ For public, non-sensitive problems, open a GitHub issue. For genuinely sensitive
 
 ## Supported versions
 
-The pinned artefacts linked from the README are the current published distribution until a newer version is explicitly published and documented.
+The original toolkit's pinned artefacts linked from the README are the current published distribution until explicitly superseded. The Agent Skills package on the draft PR is **experimental v0.3**, separately versioned, and not field-validated. Its documentation and tests must be reviewed together.
 
 ## Security claims
 
