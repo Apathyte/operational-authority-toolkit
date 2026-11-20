@@ -1,0 +1,10 @@
+{
+ "case_id":"SYN-POL-006","synthetic":true,"description":"Fictional approval variants for an offline app workflow only. Not safe-state or equipment-release authority.",
+ "requestor":"worker-A","approved_role":"qa-reviewer","checks_needed":6,
+ "policies":[
+  {"id":"P-A","point":"BEFORE_INSPECTION","required_checks":0,"status":"PROPOSED"},
+  {"id":"P-B","point":"AFTER_INSPECTION","required_checks":6,"status":"PROPOSED"}
+ ],
+ "negative_cases":["wrong_role","self_approval","missing_check","nok_check","active_hold","duplicate_approval"],
+ "prohibited_claims":["both policies approved","application sign-off is an interlock","quality release authorised by this offline fixture"]
+}

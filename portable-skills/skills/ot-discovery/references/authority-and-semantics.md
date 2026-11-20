@@ -42,6 +42,10 @@ Ask what happens when representations disagree. Do not decide by latest timestam
 
 These boundaries may be combined by agreement but must not be assumed. Whenever site support or upgrades can change meaning, capture lifecycle ownership as a fourth question.
 
+## Disputed decision-point policy
+
+Different accounts of where approval belongs are **versioned policy variants**, not a clerical difference to smooth over. Specify separate guard and rejection tests for each policy; withhold selection until the responsible human signs off. See [policy variants and negative tests](policy-variants-and-negative-tests.md). An app approval controls the app's state only; operational/safety release and PLC permissives are separate domains.
+
 ## Authority conflict record
 
 Record at minimum: `object`, `decision`, `claiming_parties`, `candidate_sources`, `current_rule`, `approved_rule_or_UNRESOLVED`, `consequence`, `evidence_to_resolve`, `owner`. A proposed rule cannot authorise itself by appearing in a diagram.

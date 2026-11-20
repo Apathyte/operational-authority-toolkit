@@ -33,6 +33,10 @@ Start with non-invasive approved artifacts: process documents, role matrix, samp
 - **Manual correction:** wrong lot posted then fixed: what object and evidence change, and by whose authority?
 - **Site variation:** identical equipment labels but different control semantics: what portion of a template is still reusable?
 
+## Time and capacity interrogation
+
+When people or equipment are shared across orders or units, shadow the complete handoff: exact job-ready time, resource arrival, travel, actual start, required checks, finish, released-for-next-step and missed-notification behavior. Ask what happens to the **next two jobs**, not only the delayed one. Obtain comparable timestamps with permission; distinguish expected norms from witnessed durations. Follow [temporal/resource analysis](temporal-and-resource-model.md) before suggesting capacity improvements.
+
 ## Output question discipline
 
 Prefer a compact set of high-impact unanswered questions ordered by `consequence × reversibility × decision urgency` (qualitative, not invented numerical score). Each asks for a **specific evidence-producing action**, not a generic workshop. Example: “Provide the approved quality-release decision record and a redacted event trail demonstrating that hold cannot be cleared by the PLC idle bit.”

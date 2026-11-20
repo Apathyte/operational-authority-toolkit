@@ -16,6 +16,8 @@ Use Markdown for humans and optionally JSON for agents; these field semantics ar
   "conflicts": [{"claim_ids":["C1","C2"],"test":"...","arbitration_authority":"UNRESOLVED"}],
   "unknowns": [{"id":"U1","question":"...","discriminating_test":"...","owner_role":"...","blocks":["AUTO-RELEASE"],"does_not_block":["READ-ONLY-TRIAL"]}],
   "gates": [{"id":"G1","decision":"...","status":"OPEN","required_evidence":["..."],"decision_owner":"UNRESOLVED"}],
+  "temporal_resource_analysis": {"trigger":"REQUIRED_IF_COUPLED","jobs_and_resources":[],"scenario_assumptions":[],"resource_wait":[],"job_ready_before_resource":[],"execution_status":"NOT EXECUTED"},
+  "policy_variants": [{"policy_id":"P-A","status":"PROPOSED","guard":"...","negative_tests":[],"execution_status":"NOT EXECUTED"}],
   "design_approval": "NOT GRANTED"
 }
 ```
@@ -25,6 +27,8 @@ If a field is not applicable, explain why. If unresolved, use literal `UNKNOWN`/
 ## Reject a handoff when
 
 - an observed condition is interpreted as an authorised command without provenance;
+- a shared-resource or time-dependent outcome is discussed without at least a bounded dependency graph and replay/explicit unexecuted test;
+- mutually incompatible approval timing variants have been silently merged;
 - relevant exception/override has been eliminated for tidiness;
 - an `UNKNOWN` is silently rendered as an affirmative design choice;
 - all downstream packages are blocked by one isolated unknown;
