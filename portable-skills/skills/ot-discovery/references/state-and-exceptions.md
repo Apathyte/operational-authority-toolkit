@@ -18,6 +18,10 @@ An example (entirely fictional):
 
 `Cleaning task COMPLETED` and `Equipment AVAILABLE` are **not the same state**. `Run=0` does not establish cleaning was performed.
 
+## Trigger time/resource modelling when operations are coupled
+
+An object graph alone misses shared-resource queuing and propagated late starts. If several jobs share a crew, tester, technician, line, finite capacity or release window, **read [temporal and resource modelling](temporal-and-resource-model.md)**. Distinguish `object_ready`, `resource_arrival`, `work_start`, `finish`, `verification`, `authorised_release` and deliberately perturb duration/arrival. Record a symbolic test if the clock is unsupported; never convert a proposed timetable into an observed KPI.
+
 ## Minimum questions per object
 
 - Who creates the ID and where is identity reconciled across systems?
